@@ -1,0 +1,374 @@
+@import "tailwindcss";
+@source inline("bg-makerspace bg-cowork bg-artcafe bg-aloft bg-roof bg-podlab hover:bg-makerspace hover:bg-cowork hover:bg-artcafe hover:bg-aloft hover:bg-roof hover:bg-podlab border-makerspace border-cowork border-artcafe border-aloft border-roof border-podlab text-makerspace text-cowork text-artcafe text-aloft text-roof text-podlab");
+/* =========================
+   FONT FACE DEFINITIONS
+========================= */
+
+/* Scratchy */
+@font-face {
+  font-family: "Scratchy";
+  src: url("/fonts/Scratchy.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Hello Mixed */
+@font-face {
+  font-family: "HelloMixed";
+  src: url("/fonts/Hello-Mixed.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Offset MI */
+@font-face {
+  font-family: "OffsetMI";
+  src: url("/fonts/OffsetTM.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TomatoGrotesk";
+  src: url("/fonts/TomatoGrotesk-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TomatoGrotesk";
+  src: url("/fonts/TomatoGrotesk-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tomato Grotesk Medium (500) */
+@font-face {
+  font-family: "TomatoGrotesk";
+  src: url("/fonts/TomatoGrotesk-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* If you have Bold file */
+@font-face {
+  font-family: "TomatoGrotesk";
+  src: url("/fonts/TomatoGrotesk-SemiBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =========================
+   TAILWIND THEME VARIABLES
+========================= */
+
+@theme {
+  --color-cowork: #f69727;
+  --color-artcafe: #e9afac;
+  --color-aloft: #9e775b;
+  --color-roof: #92cdc2;
+  --color-makerspace: #ec512f;
+  --color-podlab: #858f75;
+
+  /* Font families */
+  --font-display: "HelloMixed", sans-serif;
+  --font-offset: "OffsetMI", sans-serif;
+  --font-scratchy: "Scratchy", cursive;
+  --font-body: "TomatoGrotesk", system-ui, sans-serif;
+
+  --breakpoint-xs: 400px;
+  --breakpoint-2xs: 620px;
+
+  /*
+    Typography scale — fluid via clamp(min, preferred, max)
+    Formula: clamp(min-size, min-size + (max-size - min-size) * ((100vw - 20rem) / (80rem - 20rem)), max-size)
+    Viewport range: 320px (20rem) → 1280px (80rem)
+  */
+
+  /*
+  Viewport range assumed:
+  320px (20rem) → 1280px (80rem)
+*/
+
+  /* =========================
+   DISPLAY
+========================= */
+
+  /*
+    Typography scale — fully fluid via clamp(min, preferred, max)
+    Viewport range: 320px (20rem) → 1280px (80rem)
+
+    font-size    — scales up with viewport
+    line-height  — tightens as size grows (display gets denser leading)
+    tracking     — loosens slightly on smaller sizes, tightens at display scale
+                   (em values, so they multiply against the fluid font-size)
+  */
+
+  /* hero-xl (SESSIONS): 48px → 108px */
+  --text-hero-xl: clamp(3rem, 0.75rem + 9.375vw, 6.75rem);
+  --text-hero-xl--line-height: 0.7em;
+  --text-hero-xl--tracking: 0.01em;
+
+  /* hero-lg (&PRICING): 36px → 73px */
+  --text-hero-lg: clamp(2.25rem, 0.625rem + 6.771vw, 4.5625rem);
+  --text-hero-lg--line-height: 0.7em;
+  --text-hero-lg--tracking: 0.02em;
+
+  /* display-hm: 28px → 60px */
+  --text-display-hm: clamp(2.6rem, 1.2rem + 3vw, 3rem);
+  --text-display-hm--line-height: 0.95;
+  --text-display-hm--tracking: 0em;
+
+  /* display-s: 24px → 47px */
+  --text-display-s: clamp(2rem, 1rem + 2.5vw, 2.975rem);
+  --text-display-s--line-height: 1.05;
+  --text-display-s--tracking: 0.01em;
+
+  /* =========================
+   HEADINGS
+========================= */
+
+  /* h2-off: 24px → 46px */
+  --text-h2-off: clamp(1.75rem, 1rem + 2.5vw, 2.675rem);
+  --text-h2-off--line-height: 0.95;
+  --text-h2-off--tracking: 0.02em;
+
+  /* h3-off: 18px → 28px */
+  --text-h3-off: clamp(1.3rem, 0.9rem + 1.2vw, 1.75rem);
+  --text-h3-off--line-height: 1;
+  --text-h3-off--tracking: 0.03em;
+
+  /* h2: 20px → 38px   */
+  --text-h2: clamp(1.59rem, 0.9rem + 1vw, 2.375rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--tracking: -0.02em;
+
+  /* h3: 16px → 24px */
+  --text-h3: clamp(1rem, 0.8rem + 1vw, 1.2rem);
+  --text-h3--line-height: 1.4;
+  --text-h3--tracking: -0.03em;
+
+  /* =========================
+   BODY TEXT
+========================= */
+
+  /* p: 14px → 18px */
+  --text-p: clamp(0.875rem, 0.8rem + 0.4vw, 1.125rem);
+  --text-p--line-height: 1.5;
+  --text-p--tracking: 0.02em;
+
+  /* p-bold: 14px → 18px */
+  --text-p-bold: clamp(0.875rem, 0.8rem + 0.4vw, 1.125rem);
+  --text-p-bold--line-height: 1.5;
+  --text-p-bold--tracking: 0.01em;
+
+  /* =========================
+   CAPTION
+========================= */
+
+  /* caption: 12px → 14px */
+  --text-caption: clamp(0.75rem, 0.625rem + 0.333vw, 0.875rem);
+  --text-caption--line-height: 1.3rem;
+  --text-caption--tracking: 0.02em;
+}
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+/* For Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 2px; /* thickness */
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0; /* track color */
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333; /* thumb color */
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* hover effect */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Background image setup */
+  background-image: url("/images/ui/bg.png"); /* adjust path if needed */
+  background-repeat: repeat;
+  background-size: 1000px 500px; /* controls the "small size" of the tile */
+}
+
+/* =========================
+   TYPOGRAPHY UTILITIES
+========================= */
+
+@layer utilities {
+  .hero-xl {
+    font-size: var(--text-hero-xl);
+    line-height: var(--text-hero-xl--line-height);
+    letter-spacing: var(--text-hero-xl--tracking);
+    font-family: var(--font-offset);
+  }
+
+  .hero-lg {
+    font-size: var(--text-hero-lg);
+    line-height: var(--text-hero-lg--line-height);
+    letter-spacing: var(--text-hero-lg--tracking);
+    font-family: var(--font-offset);
+  }
+  .h1 {
+    font-size: var(--text-display-hm);
+    line-height: var(--text-display-hm--line-height);
+    letter-spacing: var(--text-display-hm--tracking);
+    font-family: var(--font-display);
+  }
+  .h1-alt {
+    font-size: var(--text-display-s);
+    line-height: var(--text-display-s--line-height);
+    letter-spacing: var(--text-display-s--tracking);
+    font-family: var(--font-scratchy);
+  }
+  .h2-off {
+    font-size: var(--text-h2-off);
+    line-height: var(--text-h2-off--line-height);
+    letter-spacing: var(--text-h2-off--tracking);
+    font-family: var(--font-offset);
+  }
+  .h3-off {
+    font-size: var(--text-h3-off);
+    line-height: var(--text-h3-off--line-height);
+    letter-spacing: var(--text-h3-off--tracking);
+    font-family: var(--font-offset);
+  }
+  .h2 {
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+    letter-spacing: var(--text-h2--tracking);
+    font-family: var(--font-body);
+    font-weight: 500;
+  }
+
+  .h3 {
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    letter-spacing: var(--text-h3--tracking);
+    font-family: var(--font-body);
+    font-weight: 500;
+  }
+  .p {
+    font-size: var(--text-p);
+    line-height: 1.4;
+    letter-spacing: var(--text-p--tracking);
+    font-family: var(--font-body);
+    font-weight: normal;
+  }
+  .p-bold {
+    font-size: var(--text-p-bold);
+    line-height: var(--text-p-bold--line-height);
+    letter-spacing: var(--text-p-bold--tracking);
+    font-family: var(--font-body);
+    font-weight: 500;
+  }
+  .caption {
+    font-size: var(--text-caption);
+    line-height: var(--text-caption--line-height);
+    letter-spacing: var(--text-caption--tracking);
+    font-family: var(--font-body);
+  }
+}
+
+/* InfiniteBanner.css */
+.scroller {
+  max-width: 100%;
+  overflow: hidden;
+  /* Add mask to fade edges if desired */
+  /* mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent); */
+}
+
+.scroller-inner {
+  display: flex;
+  width: max-content; /* Ensure the inner container is wide enough */
+  animation: infinite-scroll 25s linear infinite;
+}
+
+.scroller-item {
+  padding: 0 1rem; /* Add spacing between items */
+}
+
+/* Pause animation on hover */
+.scroller:hover .scroller-inner {
+  animation-play-state: paused;
+}
+
+.spin-slow {
+  animation: spin 20s linear infinite;
+}
+
+.shake {
+  animation: shake 3s steps(1) infinite;
+}
+
+/* Define the animation */
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Move the full width of the original content */
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-25deg);
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  60% {
+    transform: rotate(25deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-25deg);
+  }
+}
