@@ -4,6 +4,7 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +14,7 @@ export interface AccordionItem {
     format?: string;
     body?: string;
     note?: string;
+    noteHref?: string;
   };
 }
 
@@ -206,9 +208,15 @@ export default function SessionsAccordion({
                         <p className="p text-black/70">{item.content.body}</p>
                       )}
                       {item.content.note && (
-                        <p className="caption text-black/50 italic">
-                          {item.content.note}
-                        </p>
+                        item.content.noteHref ? (
+                          <Link href={item.content.noteHref} className="caption text-black/50 italic hover:text-black/80 hover:underline transition-colors w-fit">
+                            {item.content.note}
+                          </Link>
+                        ) : (
+                          <p className="caption text-black/50 italic">
+                            {item.content.note}
+                          </p>
+                        )
                       )}
                     </div>
                   )}

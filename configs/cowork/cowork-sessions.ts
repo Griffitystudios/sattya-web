@@ -56,7 +56,7 @@ export const coworkSessionsConfig: SessionsAccordionProps = {
       content: {
         format: "",
         body: "Details on passes, rentals, and current rates are available here.",
-        note: "→ View passes & pricing (opens a new page: /cowork/pricing )",
+        noteHref: "→ View passes & pricing",
       },
     },
   ],
