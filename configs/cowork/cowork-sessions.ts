@@ -6,50 +6,57 @@ export const coworkSessionsConfig: SessionsAccordionProps = {
   heroLine2: "& Pricing",
   subtext:
     "Cowork is designed to be flexible. Work for a short stretch, stay for the day, or come back regularly. Choose what fits your schedule.",
-  footnote: "To reserve a spot in advance, get in touch.",
+  footnote: "Details on passes, rentals, and current rates are available here.",
   starSrc: "/images/star.png",
   accentColor: "text-cowork",
   accentBg: "bg-cowork",
   items: [
     {
+      label: "Short Stay Pass",
+      content: {
+        format: "",
+        body: "For brief work sessions",
+        note: "",
+      },
+    },
+    {
       label: "Day Pass",
       content: {
-        format: "NPR 500: Full-day use.",
-        body: "Includes access to shared desks and call booths during open hours. Available on a first-come basis for walk-ins. Call booths are intended for calls or quiet, focused work.",
-        note: "*To reserve a spot in advance, get in touch.",
+        format: "",
+        body: "For a full day of access.",
+        note: "",
       },
     },
     {
-      label: "Weekly Pass",
+      label: "Weekly & Monthly Passes",
       content: {
-        format: "NPR 2,000: Daily use for 7 days.",
-        body: "Includes access to shared desks and call booths during open hours. Available on a first-come basis for walk-ins. Call booths are intended for calls or quiet, focused work.",
-        note: "*To reserve a spot in advance, get in touch.",
+        format: "",
+        body: "For regular use.",
+        note: "",
       },
     },
     {
-      label: "Monthly Pass",
+      label: "Meeting Room Rental",
       content: {
-        format: "NPR 6,000: Daily use for one month.",
-        body: "Includes access to shared desks and call booths during open hours. Available on a first-come basis for walk-ins. Call booths are intended for calls or quiet, focused work.",
-        note: "*To reserve a spot in advance, get in touch.",
+        format: "",
+        body: "For calls, meetings, or small group work.",
+        note: "",
       },
     },
     {
-      label: "Meeting Room",
+      label: "Office Rental",
       content: {
-        format:
-          "4–6 people: NPR 500 / short stay (up to 2 hours) · NPR 1,500 / day.",
-        body: "For meetings, group discussions, or longer calls. Coffee and tea included.",
-        note: "*Available for booking in advance.",
+        format: "",
+        body: "For small teams needing a dedicated space.",
+        note: "",
       },
     },
     {
-      label: "Private Office",
+      label: "Pricing",
       content: {
-        format: "4–6 people: NPR 5,000 / week · NPR 15,000 / month.",
-        body: "For small teams or individuals needing a dedicated room. Longer-term use or custom arrangements can be discussed.",
-        note: "*Get in touch for custom arrangements.",
+        format: "",
+        body: "Details on passes, rentals, and current rates are available here.",
+        note: "→ View passes & pricing (opens a new page: /cowork/pricing )",
       },
     },
   ],
