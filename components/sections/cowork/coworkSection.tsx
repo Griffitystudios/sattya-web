@@ -348,7 +348,7 @@ export default function CoWorkSection({
                 WORKSHOP{" "}
                 <span
                   ref={togetherRef}
-                  className="h1-alt text-black absolute lowercase -bottom-5 lg:-bottom-10 lg:-right-40 whitespace-nowrap"
+                  className="h1-alt text-black absolute lowercase -bottom-5 lg:-bottom-4 lg:-right-40 whitespace-nowrap"
                 >
                   for getting things done.
                 </span>
@@ -356,18 +356,18 @@ export default function CoWorkSection({
             </h2>
           </div>
 
-          <div className="mt-8" />
+          <div className="mt-10" />
 
           <div className="flex flex-col gap-4 lg:max-w-lg">
-            <p ref={para1Ref} className="p text-black/80">
+            <p ref={para1Ref} className="p-bold text-black/80">
               Desks, call booths, a private office, and meeting rooms.
             </p>
-            <p ref={para2Ref} className="p text-black/80">
+            <p ref={para2Ref} className="p-bold text-black/80">
               Drop in to work for few hours, or stay most of the day.
             </p>
           </div>
 
-          <div ref={dashRowRef} className="flex gap-6 mt-5">
+          <div ref={dashRowRef} className="flex gap-6 mt-8">
             {[0, 1, 2].map((i) => (
               <span key={i} className="block w-4 h-px bg-black/20" />
             ))}
