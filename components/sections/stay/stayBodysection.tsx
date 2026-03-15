@@ -127,6 +127,7 @@ export default function StaybodySection({
     return () => cleanups.forEach((fn) => fn());
   }, []);
 
+
   return (
     <section
       ref={sectionRef}
@@ -150,17 +151,17 @@ export default function StaybodySection({
         </div>
 
         {/* ── BODY ROW ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-          {/* LEFT — two text blocks */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 flex-row-reverse lg:gap-20 items-center">
+
+          {/* LEFT */}
           <div ref={col1Ref} className="flex flex-col gap-8">
-
             {/* Block 1 — left border */}
             <p
               className="anim-block p-bold text-black"
               style={{ borderLeft: `3px solid #A7937A`, paddingLeft: "1rem" }}
             >
-              Staying at Sattya is about having a solid, comfortable based in
+              Staying at Sattya is about having a solid, comfortable base in
               Kathmandu while being close to an active creative community.
               You're not staying inside every activity, but you're close enough
               that connection is easy, whether that's a conversation over
@@ -170,12 +171,7 @@ export default function StaybodySection({
 
             {/* Block 2 — boxed with square decoration */}
             <div className="anim-block relative ml-4 mt-8">
-              {/* Small square accent — overlaps top-left corner */}
-              <div
-                className="absolute -top-4 -left-4 w-8 h-8 z-10"
-                style={{ backgroundColor: "#A7937A" }}
-              />
-              {/* Main box */}
+              <div className="absolute -top-4 -left-4 w-8 h-8 z-10 bg-stay" />
               <div className="relative z-10 border-2 border-black bg-white p-6">
                 <p className="p text-black">
                   These stays tend to attract artists, curious travelers, researchers,
@@ -184,29 +180,117 @@ export default function StaybodySection({
                   around others doing interesting work.
                 </p>
               </div>
-              {/* Offset shadow — dark, bottom-right */}
               <div className="absolute bottom-[-8px] right-[-8px] w-full h-full bg-black/80 z-0" />
             </div>
           </div>
 
-          {/* RIGHT — photo with offset shadow */}
-          <div ref={photo1WrapRef} className="anim-block relative flex items-center justify-center">
-            {/* Shadow layer */}
+          {/* RIGHT — photo 1 */}
+          <div className="anim-block relative" style={{ paddingBottom: "24px", paddingRight: "24px" }}>
+            <div className="absolute z-0 bg-stay-shadow" style={{ width: "calc(100% - 8px)", height: "calc(100% - 8px)", bottom: 0, right: 0 }} />
+            <div className="absolute z-[1] bg-stay" style={{ width: "calc(100% - 16px)", height: "calc(100% - 16px)", bottom: "8px", right: "8px" }} />
+            <div className="relative z-10 border-2 border-black">
+              <Image src={image1Src} alt="Stay at Sattya" width={800} height={600} className="w-full h-auto object-cover grayscale block" sizes="(max-width: 1024px) 100vw, 50vw" />
+            </div>
+          </div>
+        </div>
+
+        {/* ── BODY ROW 2 ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mt-20">
+
+          {/* LEFT */}
+          <div ref={col2Ref} className="flex flex-col gap-8">
+            {/* Block 1 — drop cap */}
+            <p className="anim-block p text-black">
+              <span className="float-left text-[3.859rem] leading-[0.75] mr-2 mt-1 text-stay" style={{ fontFamily: "var(--font-display)" }}>
+                A
+              </span>
+              ll of the spaces are well maintained, clean, and thoughtfully set up,
+              with responsive management and a lived-in, welcoming feel. It's
+              meant to feel like a home away from home, somewhere you can settle
+              in, focus, and also step out into community when you want to.
+            </p>
+
+            {/* Block 2 — plain paragraph */}
+            <p className="anim-block p text-black">
+              Downstairs and nearby, Sattya offers a coworking space, a cafe for
+              coffee and casual meetings, and a regular rhythm of events, from
+              screenings and workshops to informal gatherings in the Art Cafe.
+              There's usually something happening, but never an obligation to
+              participate.
+            </p>
+
+            {/* Block 3 — filled box with dark shadow */}
+            <div className="anim-block relative mt-4">
+              <div className="absolute z-0 bg-black" style={{ bottom: "-8px", right: "-8px", width: "100%", height: "100%" }} />
+              <div className="relative z-10 p-8 bg-stay">
+                <p className="p-bold text-white">
+                  For guests working on specific projects, there may also be
+                  opportunities for support, such as introductions,
+                  translation, or local connections. These are arranged by
+                  inquiry and advance planning, depending on timing and
+                  capacity.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT — photo 2 with X pattern L-shape */}
+          <div className="anim-block relative pl-15 pb-10">
+
+            {/* Vertical X column — left side, stops before bottom row */}
             <div
-              ref={shadow1Ref}
-              className="absolute inset-0"
-              style={{ backgroundColor: "#C4AD95", transform: "translate(10px, 8px)" }}
-            />
-            {/* Photo */}
-            <div ref={photo1Ref} className="relative w-full aspect-[4/3]">
+              ref={xPatternRef}
+              className="absolute left-0 top-0 bottom-10 z-0 flex flex-col gap-8 justify-end  "
+            >
+              {Array.from({ length: 5 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="text-sm xl:text-lg font-black leading-none select-none"
+                  style={{ color: "#F5B800" }}
+                >
+                  ✕
+                </span>
+              ))}
+            </div>  <div
+              ref={xPatternRef}
+              className="absolute left-8 top-0 bottom-10 z-0 flex flex-col gap-8 justify-end "
+            >
+              {Array.from({ length: 5 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="text-sm xl:text-lg font-black leading-none select-none"
+                  style={{ color: "#F5B800" }}
+                >
+                  ✕
+                </span>
+              ))}
+            </div>
+
+            {/* Horizontal X row — bottom, full width */}
+            <div className="absolute bottom-0 left-0 right-0 z-0 flex justify-start gap-4 ">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="text-sm xl:text-lg font-black leading-none select-none"
+                  style={{ color: "#F5B800" }}
+                >
+                  ✕
+                </span>
+              ))}
+            </div>
+
+            {/* Photo — on top */}
+            <div className="relative z-10 border-2 border-black">
               <Image
-                src={image1Src}
+                src={image2Src}
                 alt="Stay at Sattya"
-                fill
-                className="object-cover grayscale"
+                width={800}
+                height={600}
+                className="w-full h-auto object-cover grayscale block"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
+
           </div>
         </div>
 

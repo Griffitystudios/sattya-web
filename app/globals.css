@@ -38,6 +38,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "TomatoGrotesk";
   src: url("/fonts/TomatoGrotesk-Regular.otf") format("opentype");
@@ -75,6 +76,8 @@
   --color-roof: #92cdc2;
   --color-makerspace: #ec512f;
   --color-podlab: #858f75;
+  --color-stay: #A7937A;
+  --color-stay-shadow: #E7D7C3;
 
   /* Font families */
   --font-display: "HelloMixed", sans-serif;
@@ -188,21 +191,25 @@
 
 /* For Chrome, Edge, Safari */
 ::-webkit-scrollbar {
-  width: 2px; /* thickness */
+  width: 2px;
+  /* thickness */
 }
 
 ::-webkit-scrollbar-track {
-  background: #f0f0f0; /* track color */
+  background: #f0f0f0;
+  /* track color */
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333; /* thumb color */
+  background: #333;
+  /* thumb color */
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; /* hover effect */
+  background: #555;
+  /* hover effect */
 }
 
 html {
@@ -217,9 +224,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   /* Background image setup */
-  background-image: url("/images/ui/bg.png"); /* adjust path if needed */
+  background-image: url("/images/ui/bg.png");
+  /* adjust path if needed */
   background-repeat: repeat;
-  background-size: 1000px 500px; /* controls the "small size" of the tile */
+  background-size: 1000px 500px;
+  /* controls the "small size" of the tile */
 }
 
 /* =========================
@@ -240,30 +249,35 @@ body {
     letter-spacing: var(--text-hero-lg--tracking);
     font-family: var(--font-offset);
   }
+
   .h1 {
     font-size: var(--text-display-hm);
     line-height: var(--text-display-hm--line-height);
     letter-spacing: var(--text-display-hm--tracking);
     font-family: var(--font-display);
   }
+
   .h1-alt {
     font-size: var(--text-display-s);
     line-height: var(--text-display-s--line-height);
     letter-spacing: var(--text-display-s--tracking);
     font-family: var(--font-scratchy);
   }
+
   .h2-off {
     font-size: var(--text-h2-off);
     line-height: var(--text-h2-off--line-height);
     letter-spacing: var(--text-h2-off--tracking);
     font-family: var(--font-offset);
   }
+
   .h3-off {
     font-size: var(--text-h3-off);
     line-height: var(--text-h3-off--line-height);
     letter-spacing: var(--text-h3-off--tracking);
     font-family: var(--font-offset);
   }
+
   .h2 {
     font-size: var(--text-h2);
     line-height: var(--text-h2--line-height);
@@ -279,6 +293,7 @@ body {
     font-family: var(--font-body);
     font-weight: 500;
   }
+
   .p {
     font-size: var(--text-p);
     line-height: 1.4;
@@ -286,6 +301,7 @@ body {
     font-family: var(--font-body);
     font-weight: normal;
   }
+
   .p-bold {
     font-size: var(--text-p-bold);
     line-height: var(--text-p-bold--line-height);
@@ -293,6 +309,7 @@ body {
     font-family: var(--font-body);
     font-weight: 500;
   }
+
   .caption {
     font-size: var(--text-caption);
     line-height: var(--text-caption--line-height);
@@ -311,12 +328,14 @@ body {
 
 .scroller-inner {
   display: flex;
-  width: max-content; /* Ensure the inner container is wide enough */
+  width: max-content;
+  /* Ensure the inner container is wide enough */
   animation: infinite-scroll 25s linear infinite;
 }
 
 .scroller-item {
-  padding: 0 1rem; /* Add spacing between items */
+  padding: 0 1rem;
+  /* Add spacing between items */
 }
 
 /* Pause animation on hover */
@@ -337,6 +356,7 @@ body {
   from {
     transform: translateX(0);
   }
+
   to {
     /* Move the full width of the original content */
     transform: translateX(-50%);
@@ -347,6 +367,7 @@ body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -356,18 +377,23 @@ body {
   0% {
     transform: rotate(0deg);
   }
+
   20% {
     transform: rotate(-25deg);
   }
+
   40% {
     transform: rotate(0deg);
   }
+
   60% {
     transform: rotate(25deg);
   }
+
   80% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(-25deg);
   }
