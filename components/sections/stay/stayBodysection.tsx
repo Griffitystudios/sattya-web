@@ -14,8 +14,8 @@ interface StaybodySectionProps {
 }
 
 export default function StaybodySection({
-  image1Src = "/images/stay/temple.png",
-  image2Src = "/images/stay/people.png",
+  image1Src = "/images/stay/img1.png",
+  image2Src = "/images/stay/img2.png",
 }: StaybodySectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
@@ -137,13 +137,13 @@ export default function StaybodySection({
       <div className="relative z-10 max-w-7xl mx-auto">
 
         {/* ── HEADING ── */}
-        <div ref={headingRef} className="mb-10 w-fit">
-          <h2 className="anim-word h1 text-[#A7937A] uppercase">
+        <div ref={headingRef} className="mb-20 mt-20 mx-auto w-fit">
+          <h2 className="anim-word text-[clamp(1.5rem,1rem_+_5.5vw,8rem)] font-display -translate-x-50 leading-none text-[#A7937A] uppercase">
             A Place{" "}
             <br />
-            <span className="relative left-20 text-black">
+            <span className="relative text-[clamp(1.5rem,1rem_+_5.5vw,8rem)] font-display leading-none -top-6 left-[clamp(4rem,-1.33rem_+_26.66vw,20rem)] text-black">
               To Land
-              <span className="h1-alt text-black ml-2 lowercase ">
+              <span className="font-scratchy text-black ml-2 lowercase ">
                 at sattya
               </span>
             </span>
@@ -184,24 +184,121 @@ export default function StaybodySection({
             </div>
           </div>
 
-          {/* RIGHT — photo 1 */}
+          {/* RIGHT — photo with two offset shadows */}
           <div className="anim-block relative" style={{ paddingBottom: "24px", paddingRight: "24px" }}>
-            <div className="absolute z-0 bg-stay-shadow" style={{ width: "calc(100% - 8px)", height: "calc(100% - 8px)", bottom: 0, right: 0 }} />
-            <div className="absolute z-[1] bg-stay" style={{ width: "calc(100% - 16px)", height: "calc(100% - 16px)", bottom: "8px", right: "8px" }} />
+            {/* Shadow back layer */}
+            <div
+              className="absolute z-0 bg-stay-shadow"
+              style={{
+                width: "calc(100% - 8px)",
+                height: "calc(100% - 8px)",
+                top: 25,
+                left: 25,
+              }}
+            />
+            {/* Shadow front layer */}
+            <div
+              className="absolute z-[1] bg-stay"
+              style={{
+                width: "calc(100% - 16px)",
+                height: "calc(100% - 16px)",
+                top: "15px",
+                left: "15px",
+              }}
+            />
+            {/* Photo */}
             <div className="relative z-10 border-2 border-black">
-              <Image src={image1Src} alt="Stay at Sattya" width={800} height={600} className="w-full h-auto object-cover grayscale block" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image
+                src={image1Src}
+                alt="Stay at Sattya"
+                width={800}
+                height={600}
+                className="w-full h-auto object-cover  block"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
           </div>
         </div>
 
         {/* ── BODY ROW 2 ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start mt-60">
+          <div className="anim-block relative pl-15 pb-10">
 
+            {/* Vertical X column — left side, stops before bottom row */}
+            <div
+              ref={xPatternRef}
+              className="absolute left-0 top-0 bottom-10 z-0 flex flex-col gap-6 justify-end  "
+            >
+              {Array.from({ length: 5 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="text-sm xl:text-lg font-black leading-none select-none"
+                  style={{ color: "#F5B800" }}
+                >
+                  ✕
+                </span>
+              ))}
+            </div>
+            <div
+              ref={xPatternRef}
+              className="absolute left-6.5 top-0 bottom-10 z-0 flex flex-col gap-6 justify-end "
+            >
+              {Array.from({ length: 5 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="text-sm xl:text-lg font-black leading-none select-none"
+                  style={{ color: "#F5B800" }}
+                >
+                  ✕
+                </span>
+              ))}
+            </div>
+            <div
+              ref={xPatternRef}
+              className="absolute left-13 top-0 bottom-10 z-0 flex flex-col gap-6 justify-end "
+            >
+              {Array.from({ length: 5 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="text-sm xl:text-lg font-black leading-none select-none"
+                  style={{ color: "#F5B800" }}
+                >
+                  ✕
+                </span>
+              ))}
+            </div>
+
+            {/* Horizontal X row — bottom, full width */}
+            <div className="absolute bottom-0 left-0 right-0 z-0 flex justify-start gap-3 ">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="text-sm xl:text-lg font-black leading-none select-none"
+                  style={{ color: "#F5B800" }}
+                >
+                  ✕
+                </span>
+              ))}
+            </div>
+
+            {/* Photo — on top */}
+            <div className="relative z-10 border-2 border-black">
+              <Image
+                src={image2Src}
+                alt="Stay at Sattya"
+                width={800}
+                height={600}
+                className="w-full h-auto object-cover  block"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+
+          </div>
           {/* LEFT */}
           <div ref={col2Ref} className="flex flex-col gap-8">
             {/* Block 1 — drop cap */}
             <p className="anim-block p text-black">
-              <span className="float-left text-[3.859rem] leading-[0.75] mr-2 mt-1 text-stay" style={{ fontFamily: "var(--font-display)" }}>
+              <span className="float-left text-[clamp(3.001rem,2.744rem_+_1.372vw,3.859rem)] leading-[0.75] mr-2 mt-1 text-stay" style={{ fontFamily: "var(--font-display)" }}>
                 A
               </span>
               ll of the spaces are well maintained, clean, and thoughtfully set up,
@@ -235,63 +332,7 @@ export default function StaybodySection({
           </div>
 
           {/* RIGHT — photo 2 with X pattern L-shape */}
-          <div className="anim-block relative pl-15 pb-10">
 
-            {/* Vertical X column — left side, stops before bottom row */}
-            <div
-              ref={xPatternRef}
-              className="absolute left-0 top-0 bottom-10 z-0 flex flex-col gap-8 justify-end  "
-            >
-              {Array.from({ length: 5 }).map((_, i) => (
-                <span
-                  key={i}
-                  className="text-sm xl:text-lg font-black leading-none select-none"
-                  style={{ color: "#F5B800" }}
-                >
-                  ✕
-                </span>
-              ))}
-            </div>  <div
-              ref={xPatternRef}
-              className="absolute left-8 top-0 bottom-10 z-0 flex flex-col gap-8 justify-end "
-            >
-              {Array.from({ length: 5 }).map((_, i) => (
-                <span
-                  key={i}
-                  className="text-sm xl:text-lg font-black leading-none select-none"
-                  style={{ color: "#F5B800" }}
-                >
-                  ✕
-                </span>
-              ))}
-            </div>
-
-            {/* Horizontal X row — bottom, full width */}
-            <div className="absolute bottom-0 left-0 right-0 z-0 flex justify-start gap-4 ">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <span
-                  key={i}
-                  className="text-sm xl:text-lg font-black leading-none select-none"
-                  style={{ color: "#F5B800" }}
-                >
-                  ✕
-                </span>
-              ))}
-            </div>
-
-            {/* Photo — on top */}
-            <div className="relative z-10 border-2 border-black">
-              <Image
-                src={image2Src}
-                alt="Stay at Sattya"
-                width={800}
-                height={600}
-                className="w-full h-auto object-cover grayscale block"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-
-          </div>
         </div>
 
       </div>
