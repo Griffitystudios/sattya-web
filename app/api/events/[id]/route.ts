@@ -3,7 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import Event from "../../../../models/Events";
 
 
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   await connectDB();
   const body = await req.json();
 
@@ -17,7 +18,8 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   return NextResponse.json(updated);
 }
 
-export async function DELETE(_: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(_: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   await connectDB();
   await Event.findByIdAndDelete(params.id);
   return NextResponse.json({ success: true });
