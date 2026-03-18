@@ -5,12 +5,11 @@ export default function SubstackNewsletter() {
         <h1 className="text-3xl font-bold mb-6">Subscribe to My Newsletter</h1>
 
         <iframe
-          src=""
+          src="https://spottedbysattya.substack.com"
           width="100%"
           height="320"
           style={{ border: "1px solid #EEE", background: "white" }}
-          frameBorder="0"
-          scrolling="no"
+          allow="fullscreen"
         />
       </div>
     </div>
