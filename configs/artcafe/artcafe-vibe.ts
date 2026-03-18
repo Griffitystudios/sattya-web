@@ -1,6 +1,6 @@
 // configs/artcafe.ts
 
-import {VibeGridProps} from "../../components/ui/Vibegrid";
+import { VibeGridProps } from "../../components/ui/Vibegrid";
 
 export const artVibeConfig: VibeGridProps = {
   bgColor: "bg-artcafe",
@@ -41,13 +41,13 @@ export const artVibeConfig: VibeGridProps = {
   ],
   floatingItems: [
     {
-      icon: "/images/artcafe/box.svg",
+      icon: "/images/artcafe/mug.svg",
       alt: "Featured 1",
       position: "bottom-left",
       className: "-rotate-35"
     },
     {
-      icon: "/images/artcafe/phone.svg",
+      icon: "/images/artcafe/coffee-plant.svg",
       alt: "Featured 2",
       position: "top-right",
       className: 'rotate-30'

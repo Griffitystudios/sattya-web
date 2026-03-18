@@ -1,10 +1,11 @@
 // configs/makerspace-info-alt.ts
-import {InfoSectionAltProps} from "../../components/ui/InfoSectionAlt";
+import { InfoSectionProps } from "../../components/ui/InfoSection";
 
-export const makerspaceInfoAltConfig: InfoSectionAltProps = {
+export const coworkInfoAltConfig: InfoSectionProps = {
     openingHoursLabel: "Opening Hours",
     days: "OPEN DAILY",
-    time: "10:00 AM – 5:00 PM",
+    openTime: "10:00",
+    closeTime: "05:00",
     hoursNote: "* On Mondays and Tuesdays, access is by message only.  \nAdditional hours available.",
     spaceAccessLabel: "Space Access",
     spaceAccessHeading: "Cowork is located upstairs, with entry through the Art Cafe on the ground floor.",
@@ -14,4 +15,6 @@ export const makerspaceInfoAltConfig: InfoSectionAltProps = {
     locationAddress: "Jawalakhel, Kathmandu",
     mapLabel: "View on Google Maps",
     mapHref: "#",
+    themeColor: "cowork",
+    heroHeading: "Work, \nCollaborate\n& Thrive",
 };

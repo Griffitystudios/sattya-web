@@ -15,4 +15,5 @@ export const makerspaceInfoConfig: InfoSectionProps = {
     locationAddress: "Jawalakhel, Kathmandu, Nepal",
     mapLabel: "View on Google Maps",
     mapHref: "#",
+    heroHeading: "Your home to\nexperiment\nand create",
 };
