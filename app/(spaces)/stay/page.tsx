@@ -1,3 +1,4 @@
+import BookingWidget from "../../../components/sections/stay/bookingWidget";
 import StaybodySection from "../../../components/sections/stay/stayBodysection";
 import StayOptionsSection from "../../../components/sections/stay/stayOptions";
 import StaySection from "../../../components/sections/stay/staySection";
@@ -10,6 +11,7 @@ export default function StayPage() {
   return (
     <div>
       <Hero {...stayHeroConfig} />
+      <BookingWidget />
       <StaySection />
       <StaybodySection />
       <StayOptionsSection />
