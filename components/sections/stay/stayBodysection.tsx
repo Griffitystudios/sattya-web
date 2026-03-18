@@ -251,8 +251,7 @@ export default function StaybodySection({
               {Array.from({ length: 5 }).map((_, i) => (
                 <span
                   key={i}
-                  className="text-sm xl:text-lg font-black leading-none select-none"
-                  style={{ color: "#F5B800" }}
+                  className="text-sm xl:text-lg font-black leading-none select-none text-stay"
                 >
                   ✕
                 </span>
@@ -265,8 +264,7 @@ export default function StaybodySection({
               {Array.from({ length: 5 }).map((_, i) => (
                 <span
                   key={i}
-                  className="text-sm xl:text-lg font-black leading-none select-none"
-                  style={{ color: "#F5B800" }}
+                  className="text-sm xl:text-lg font-black leading-none select-none text-stay"
                 >
                   ✕
                 </span>
@@ -279,8 +277,7 @@ export default function StaybodySection({
               {Array.from({ length: 5 }).map((_, i) => (
                 <span
                   key={i}
-                  className="text-sm xl:text-lg font-black leading-none select-none"
-                  style={{ color: "#F5B800" }}
+                  className="text-sm xl:text-lg font-black leading-none select-none text-stay"
                 >
                   ✕
                 </span>
