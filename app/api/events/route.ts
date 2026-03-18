@@ -1,34 +1,24 @@
-// import { NextResponse } from 'next/server';
-// import { eventsService } from '../../../domains/events/services/events.service';
-// import { getEvents } from '../../../domains/events/queries/getEvents';
 
-// export async function GET() {
-//   try {
-//     const events = await getEvents();
-//     return NextResponse.json(events);
-//   } catch (error) {
-//     return NextResponse.json({ error: 'Failed to fetch events' }, { status: 500 });
-//   }
-// }
+import { connectDB } from "../../../lib/mongoose";
+import { NextRequest, NextResponse } from "next/server";
+import Event from "../../../models/Events";
 
-// export async function POST(req: Request) {
-//   try {
-//     const data = await req.json();
-//     const event = await eventsService.create(data);
-//     return NextResponse.json(event, { status: 201 });
-//   } catch (error) {
-//     return NextResponse.json({ error: 'Failed to create event' }, { status: 500 });
-//   }
-// }
+export async function GET(req: NextRequest) {
+  await connectDB();
+  const { searchParams } = new URL(req.url);
+  const page = searchParams.get("page");
 
+  const query = page ? { page } : {};
+  const events = await Event.find(query).sort({ createdAt: -1 });
 
-import {NextRequest, NextResponse} from 'next/server';
+  return NextResponse.json(events);
+}
 
-export async function POST(request: NextRequest) {
-    try {
-        // Your login logic here
-        return NextResponse.json({success: true});
-    } catch (error) {
-        return NextResponse.json({error: 'Login failed'}, {status: 400});
-    }
+export async function POST(req: NextRequest) {
+  await connectDB();
+  const body = await req.json();
+
+  // Mongoose validates against the schema automatically
+  const event = await Event.create(body);
+  return NextResponse.json(event, { status: 201 });
 }
