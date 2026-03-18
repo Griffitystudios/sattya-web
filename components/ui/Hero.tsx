@@ -16,6 +16,7 @@ export interface HeroProps {
   backgroundVideo?: string; // for single looping video
   scrollText?: string;
   autoPlayInterval?: number;
+  className?: string;
 }
 
 export function Hero({
@@ -25,6 +26,7 @@ export function Hero({
   scrollText = "SCROLL TO EXPLORE",
   autoPlayInterval = 5000,
   logoSrc,
+  className,
 }: HeroProps) {
   const computedSlides: HeroSlide[] =
     slides && slides.length
@@ -126,9 +128,8 @@ export function Hero({
           computedSlides.map((slide, index) => (
             <div
               key={index}
-              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
-                index === current ? "opacity-100 z-0" : "opacity-0 -z-10"
-              }`}
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${index === current ? "opacity-100 z-0" : "opacity-0 -z-10"
+                }`}
               style={{ backgroundImage: `url(${slide.backgroundImage})` }}
             >
               <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/30 to-black/90" />
@@ -157,7 +158,7 @@ export function Hero({
           src={logoSrc}
           alt="Sattya Logo"
           priority
-          className="w-48 h-48 md:w-64 md:h-64  object-contain drop-shadow-[0_10px_35px_rgba(0,0,0,0.5)]"
+          className={`  object-contain drop-shadow-[0_10px_35px_rgba(0,0,0,0.5)] ${className || "w-48 h-48 md:w-64 md:h-64"} `}
         />
       </div>
 
