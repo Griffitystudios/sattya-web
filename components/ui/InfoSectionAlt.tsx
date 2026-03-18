@@ -14,6 +14,7 @@ export interface InfoSectionAltProps {
   locationAddress?: string;
   mapLabel?: string;
   mapHref?: string;
+  heroHeading?: string;
 }
 
 export default function InfoSectionAlt({
@@ -29,6 +30,7 @@ export default function InfoSectionAlt({
   locationAddress = "Jawalakhel, Kathmandu",
   mapLabel = "Open Map",
   mapHref = "#",
+  heroHeading = "Coffee,\nArt \n& Community",
 }: InfoSectionAltProps) {
   return (
     <section className="w-full border-b-2 border-black bg-white">
@@ -99,7 +101,7 @@ export default function InfoSectionAlt({
             </div>
           </div>
 
-         <a
+          <a
             href={mapHref}
             className="group inline-flex items-center gap-4 p-bold uppercase  transition-colors underline-offset-6 hover:underline hover:text-makerspace flex items-center gap-1 mt-1 w-fit"
           >

@@ -18,7 +18,7 @@ export default function ArtcafeSection({
   color = "rgba(233, 175, 172, 1)",
 }: ArtcafeSectionProps) {
   return (
-    <section className="relative w-full h-125 overflow-hidden">
+    <section className="relative w-full h-200 overflow-hidden">
       <div className="relative mx-auto h-full max-w-7xl">
         {/* Tree — fixed width so it doesn't stretch too wide */}
         <div className="absolute inset-y-0 -right-54 xs:-right-45 sm:-right-38  md:-right-25 lg:right-0 overflow-hidden pointer-events-none">
@@ -41,7 +41,7 @@ export default function ArtcafeSection({
         </div>
         {/* Text — vertically centered */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 h-full flex flex-col justify-center">
-          <div className="flex flex-col gap-2 items-start mt-40 xs:mt-40 sm:mt-0">
+          <div className="flex flex-col gap-2 items-start mt-40 xs:mt-60 sm:mt-40">
             <div className="w-fit">
               <h1
                 className="font-display text-[clamp(1.9rem,6vw,3.5rem)] uppercase mb-1 leading-tight"
