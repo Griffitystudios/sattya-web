@@ -26,9 +26,28 @@ const positionClasses = {
 export default function StaySection({
   floatingItems = [
     {
-      icon: "/images/stay/house.svg",
+      icon: "/images/stay/leaves.svg",
+      alt: "Stay Image",
+      position: "top-left",
+      className: "w-30 sm:w-40 md:w-48 lg:w-60 ",
+
+    },
+    {
+      icon: "/images/stay/fruits.svg",
       alt: "Stay Image",
       position: "top-right",
+    },
+    {
+      icon: "/images/stay/plant.svg",
+      alt: "Stay Image",
+      position: "bottom-left",
+      className: "w-18 sm:w-24 md:w-30 lg:w-37",
+    },
+    {
+      icon: "/images/stay/flower.svg",
+      alt: "Stay Image",
+      position: "bottom-right",
+      className: "w-30 sm:w-40 md:w-48 lg:w-60 ",
     },
 
   ],
@@ -39,16 +58,16 @@ export default function StaySection({
   return (
     <section
       ref={ref}
-      className={`${bgColor} py-12 md:py-18 lg:py-28 px-2 sm:px-6 lg:px-8 relative overflow-hidden `}
+      className={`${bgColor} h-[calc(100vh-10rem)] sm:h-180 py-12 md:py-18 lg:py-28 px- sm:px-6 lg:px-8 relative overflow-hidden `}
     >
       {/* Decorative corner items */}
       {floatingItems.map((featured, index) => (
         <div
           key={index}
           className={`absolute hidden sm:block pointer-events-none 
-              w-20 sm:w-28 md:w-36 lg:w-44 
+              
               ${positionClasses[featured.position]} 
-              ${featured.className ?? ""}`}
+              ${featured.className ? featured.className : "w-20 sm:w-28 md:w-36 lg:w-44"}`}
         >
           <Image
             src={featured.icon}
@@ -60,15 +79,15 @@ export default function StaySection({
         </div>
       ))}
 
-      <div className="max-w-7xl mx-auto relative z-10 px-4">
-        <div className=" justify-center ">
-          <p className="text-lg md:text-xl text-center text-white mt-4">
-            There are different options to explore if you want to stay at Sattya, with
-            mid-term and longer-term stays in Kathmandu.<br /> These stays are suited to people
-            who want a comfortable base,  access to shared spaces,<br /> and proximity to an active
-            creative community.
-          </p>
-        </div>
+      <div className="max-w-7xl mx-auto flex justify-center items-center h-full relative z-10 px-4">
+
+        <p className="p text-center text-white mt-4  ">
+          There are different options to explore if you want to stay at Sattya, with
+          mid-term and longer-term stays in Kathmandu.<br /> These stays are suited to people
+          who want a comfortable base,  access to shared spaces,<br /> and proximity to an active
+          creative community.
+        </p>
+
       </div>
     </section>
   );

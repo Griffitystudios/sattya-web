@@ -131,23 +131,42 @@ export default function StaybodySection({
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden"
-      style={{ padding: "60px 48px 80px" }}
+      className="relative overflow-hidden px-4 sm:px-6 lg:px-8 "
+
     >
       <div className="relative z-10 max-w-7xl mx-auto">
 
         {/* ── HEADING ── */}
-        <div ref={headingRef} className="mb-20 mt-20 mx-auto w-fit">
-          <h2 className="anim-word text-[clamp(1.5rem,1rem_+_5.5vw,8rem)] font-display -translate-x-50 leading-none text-[#A7937A] uppercase">
-            A Place{" "}
-            <br />
-            <span className="relative text-[clamp(1.5rem,1rem_+_5.5vw,8rem)] font-display leading-none -top-6 left-[clamp(4rem,-1.33rem_+_26.66vw,20rem)] text-black">
-              To Land
-              <span className="font-scratchy text-black ml-2 lowercase ">
-                at sattya
-              </span>
-            </span>
-          </h2>
+        <div ref={headingRef} className="my-40 w-full flex flex-col items-center">
+          <div>
+            <h2 className="uppercase leading-none" style={{ fontFamily: "var(--font-display)" }}>
+
+              {/* Line 1 — A PLACE */}
+              <div
+                className="text-[clamp(2.8rem,6vw,9.5rem)]  md:-translate-x-10 lg:-translate-x-15 xl:-translate-x-20 leading-10 md:leading-10 lg:leading-18 xl:leading-22"
+                style={{ color: "#A7937A" }}
+              >
+                A PLACE
+              </div>
+
+              {/* Line 2 — TO LAND indented + at sattya inline */}
+              <div
+                className="flex items-baseline gap-4"
+                style={{ marginLeft: "clamp(2rem,10vw,9rem)" }}
+              >
+                <span className="text-black text-[clamp(2.8rem,6vw,9.5rem)] leading-none">
+                  TO LAND
+                </span>
+                <span
+                  className="text-black lowercase text-[clamp(2.8rem,5vw,8rem)] leading-none"
+                  style={{ fontFamily: "var(--font-scratchy)" }}
+                >
+                  at sattya
+                </span>
+              </div>
+
+            </h2>
+          </div>
         </div>
 
         {/* ── BODY ROW ── */}

@@ -1,5 +1,6 @@
 // components/ui/InfoSection.tsx
 import Link from "next/link";
+import Image from "next/image";
 
 export interface InfoSectionProps {
   openingHoursLabel?: string;
@@ -15,6 +16,7 @@ export interface InfoSectionProps {
   locationAddress?: string;
   mapLabel?: string;
   mapHref?: string;
+  heroHeading?: string;
 }
 
 export default function InfoSection({
@@ -28,47 +30,33 @@ export default function InfoSection({
   spaceAccessNote = "Prioritize safety at all times.",
   locationLabel = "Location",
   locationName = "Sattya Media Arts Collective",
+  heroHeading = "Your home to\nexperiment\nand create",
   locationAddress = "Jawalakhel, Kathmandu, Nepal",
   mapLabel = "Map Location",
   mapHref = "#",
 }: InfoSectionProps) {
   return (
     <section className="w-full min-h-[70vh] flex flex-col md:flex-row border-y-2 border-makerspace">
-      {/* LEFT — Opening Hours */}
-      <div className="md:w-3/5 lg:w-2/3 bg-makerspace text-white p-8 md:p-16 flex flex-col justify-between">
-        <p className="uppercase caption text-white flex items-center gap-2 mb-12">
-          <span className="w-2 h-2  bg-white inline-block shrink-0" />
-          {openingHoursLabel}
-        </p>
+      {/* LEFT — hero heading */}
+      <div className="md:w-3/5 lg:w-2/3 bg-makerspace text-white p-8  flex items-center justify-center relative overflow-hidden min-h-[50vh] md:min-h-0">
 
-        <div className="flex flex-col gap-8 md:gap-12">
-          <div className="border-b border-white/20 pb-8 md:pb-12">
-            <p className="h3-off uppercase text-white mb-4">{days}</p>
-            <div className="flex flex-wrap items-baseline gap-x-4">
-              <span>
-                <span className="text-7xl font-display md:text-9xl lg:text-[12rem] leading-none text-white">
-                  {openTime}
-                </span>
-                <span className="h1 ml-2 uppercase text-white">AM</span>
-              </span>
-              <span className=" font-display text-6xl  lg:text-7xl text-white mx-2">
-                -
-              </span>
-              <span className="text-7xl font-display md:text-9xl lg:text-[12rem] leading-none text-white">
-                {closeTime}
-              </span>
-              <span className="h1 ml-2 uppercase text-white">PM</span>
-            </div>
-          </div>
+
+        {/* Heading + scribble */}
+        <div className="relative w-full xl:w-2/3 mx-auto">
+          <h2
+            className="text-white uppercase leading-none z-20 relative text-[clamp(3rem,5vw,6rem)]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            {heroHeading.split("\n").map((line, i) => (
+              <div key={i}>{line}</div>
+            ))}
+          </h2>
+
         </div>
 
-        <p className="caption text-white uppercase mt-12 max-w-sm">
-          {hoursNote}
-        </p>
       </div>
-
       {/* RIGHT — Space Access + Location */}
-      <div className="md:w-2/5 lg:w-1/3 bg-white p-8 md:p-12 flex flex-col  border-t-2 md:border-t-0 md:border-l-2 border-makerspace">
+      <div className="md:w-2/5 lg:w-1/3 justify-evenly gap-10 bg-white p-8 md:p-12 flex flex-col  border-t-2 md:border-t-0 md:border-l-2 border-makerspace">
         {/* Space Access */}
         <div>
           <p className="caption uppercase text-makerspace flex items-center gap-2 mb-6">
@@ -82,9 +70,35 @@ export default function InfoSection({
             {spaceAccessNote}
           </p>
         </div>
+        {/* Opening Hours */}
+        <div>
+          <p className="caption uppercase text-makerspace flex items-center gap-2 mb-6">
+            <span className="w-2 h-2 bg-makerspace  inline-block shrink-0" />
+            {openingHoursLabel}
+          </p>
+          <p className="uppercase h3-off leading-snug mb-4">
+            {days}
+          </p>
+          <span className="text-[clamp(4.8rem,5vw,7.5rem)] font-display
+ leading-none text-makerspace">
+            {openTime}
+          </span>
+          <span className="h1 ml-2 uppercase text-makerspace">AM</span>
+          <span className=" font-display text-[clamp(4.8rem,5vw,7.5rem)]  lg:text-[4.8rem] text-makerspace mx-2">
+            -
+          </span>
+          <span className="text-[clamp(4.8rem,5vw,7.5rem)] font-display
+ leading-none text-makerspace">
+            {closeTime}
+          </span>
+          <span className="h1 ml-2 uppercase text-makerspace">PM</span>
+          <p className="caption text-black/50 uppercase">
+            {hoursNote}
+          </p>
+        </div>
 
         {/* Location */}
-        <div className="mt-auto flex flex-col mb-10 gap-6">
+        <div className="flex flex-col mb-10 gap-6">
           <p className="caption uppercase text-makerspace flex items-center gap-2">
             <span className="w-2 h-2 bg-makerspace inline-block shrink-0" />
             {locationLabel}
