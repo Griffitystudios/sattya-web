@@ -6,7 +6,7 @@ interface scribbleProps {
 }
 const colorMap: Record<string, string> = {
     makerspace: "#FDC200",   // Tailwind blue-700
-    artcafe: "#FDC200      ",   // Tailwind amber-500
+    artcafe: "#1D3557        ",   // Tailwind amber-500
     stay: "#dc2626",    // Tailwind red-600
     cowork: "#000",   // Tailwind green-600
     podlab: "#16a34a",   // Tailwind green-600
