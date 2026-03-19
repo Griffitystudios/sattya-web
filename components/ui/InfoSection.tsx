@@ -40,7 +40,7 @@ export default function InfoSection({
   themeColor = "makerspace",
 }: InfoSectionProps) {
   return (
-    <section className={`w-full min-h-[70vh] flex flex-col md:flex-row border-y-2 border-${themeColor} overflow-hidden`}>
+    <section className={`w-full min-h-[70vh] flex flex-col md:flex-row border-y-2 border-${themeColor}`}>
       {/* LEFT — hero heading */}
       <div className={`md:w-3/5 xl:w-2/3 bg-${themeColor} text-white  flex items-center justify-center relative overflow-hidden min-h-[50vh] md:min-h-0`}>
 
@@ -86,7 +86,7 @@ export default function InfoSection({
 
       </div>
       {/* RIGHT — Space Access + Location */}
-      <div className={`md:w-2/5 lg:w-1/3 w-full justify-evenly gap-10 bg-white p-8 md:p-12 flex flex-col  border-t-2 md:border-t-0 md:border-l-2 border-${themeColor}`}>
+      <div className={`md:w-2/5 lg:w-1/3 justify-evenly gap-10 bg-white p-8 md:p-12 flex flex-col  border-t-2 md:border-t-0 md:border-l-2 border-${themeColor}`}>
         {/* Space Access */}
         <div>
           <p className={`caption uppercase text-${themeColor} flex items-center gap-2 mb-6`}>
@@ -101,7 +101,7 @@ export default function InfoSection({
           </p>
         </div>
         {/* Opening Hours */}
-        <div className="max-w-10 overflow-hidden xs:max-w-full ">
+        <div>
           <p className={`caption uppercase text-${themeColor} flex items-center gap-2 mb-6`}>
             <span className={`w-2 h-2 bg-${themeColor}  inline-block shrink-0`} />
             {openingHoursLabel}
@@ -109,19 +109,26 @@ export default function InfoSection({
           <p className="uppercase h3-off leading-snug mb-4">
             {days}
           </p>
-          <span className={`text-[clamp(4rem,4vw,7.5rem)] font-display
- leading-none text-${themeColor}`}>
-            {openTime}
-          </span>
-          <span className={`h1 ml-2 uppercase text-${themeColor}`}>AM</span>
-          <span className={` font-display text-[clamp(4rem,4vw,7.5rem)]  text-${themeColor} mx-2`}>
-            -
-          </span>
-          <span className={`text-[clamp(4rem,4vw,7.5rem)] font-display
- leading-none text-${themeColor}`}>
-            {closeTime}
-          </span>
-          <span className={`h1 ml-2 uppercase text-${themeColor}`}>PM</span>
+          <div className="flex flex-wrap items-center">
+            <div>
+              <span className={`text-[clamp(4rem,4vw,7.5rem)] font-display
+               leading-none text-${themeColor}`}>
+                {openTime}
+              </span>
+              <span className={`h1 ml-2 uppercase text-${themeColor}`}>AM</span>
+              <span className={` font-display leading-0 text-[clamp(4rem,4vw,7.5rem)]  text-${themeColor} mx-2`}>
+                -
+              </span>
+            </div>
+            <div>
+
+              <span className={`text-[clamp(4rem,4vw,7.5rem)] font-display
+               leading-none text-${themeColor}`}>
+                {closeTime}
+              </span>
+              <span className={`h1 ml-2 uppercase text-${themeColor}`}>PM</span>
+            </div>
+          </div>
           <p className="caption text-black/50 uppercase">
             {hoursNote}
           </p>
