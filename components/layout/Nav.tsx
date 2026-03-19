@@ -229,7 +229,7 @@ export default function Nav({
           {/* RIGHT */}
           <div
             ref={rightPanelRef}
-            className="flex flex-col h-full bg-black overflow-y-auto p-8 md:p-10"
+            className="flex flex-col h-full bg-black overflow-y-auto p-8 md:p-10 pt-20 md:pt-0"
           >
             <nav className="flex flex-col gap-8 flex-1 mt-4">
               {links.map((link, i) => (
