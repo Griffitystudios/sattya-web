@@ -40,7 +40,7 @@ export default function InfoSection({
   themeColor = "makerspace",
 }: InfoSectionProps) {
   return (
-    <section className={`w-full min-h-[70vh] flex flex-col md:flex-row border-y-2 border-${themeColor}`}>
+    <section className={`w-full min-h-[70vh] flex flex-col md:flex-row border-y-2 border-${themeColor} overflow-hidden`}>
       {/* LEFT — hero heading */}
       <div className={`md:w-3/5 xl:w-2/3 bg-${themeColor} text-white  flex items-center justify-center relative overflow-hidden min-h-[50vh] md:min-h-0`}>
 
@@ -86,7 +86,7 @@ export default function InfoSection({
 
       </div>
       {/* RIGHT — Space Access + Location */}
-      <div className={`md:w-2/5 lg:w-1/3 justify-evenly gap-10 bg-white p-8 md:p-12 flex flex-col  border-t-2 md:border-t-0 md:border-l-2 border-${themeColor}`}>
+      <div className={`md:w-2/5 lg:w-1/3 w-full justify-evenly gap-10 bg-white p-8 md:p-12 flex flex-col  border-t-2 md:border-t-0 md:border-l-2 border-${themeColor}`}>
         {/* Space Access */}
         <div>
           <p className={`caption uppercase text-${themeColor} flex items-center gap-2 mb-6`}>
@@ -101,7 +101,7 @@ export default function InfoSection({
           </p>
         </div>
         {/* Opening Hours */}
-        <div className="max-w-xs md:max-w-full ">
+        <div className="max-w-xs xs:max-w-full ">
           <p className={`caption uppercase text-${themeColor} flex items-center gap-2 mb-6`}>
             <span className={`w-2 h-2 bg-${themeColor}  inline-block shrink-0`} />
             {openingHoursLabel}
