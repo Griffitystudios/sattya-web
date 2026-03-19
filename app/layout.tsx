@@ -4,6 +4,7 @@ import Footer from "../components/layout/Footer";
 import Nav from "../components/layout/Nav";
 import { navConfig } from "../configs/nav";
 import { footerConfig } from "../configs/footer";
+import BackToTop from "../components/layout/backToTop";
 
 export const metadata: Metadata = {
   title: "Sattya",
@@ -19,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen flex flex-col">
         <Nav {...navConfig} />
-
+        <BackToTop />
         <main className="flex-1">{children}</main>
         <Footer {...footerConfig} />
       </body>
