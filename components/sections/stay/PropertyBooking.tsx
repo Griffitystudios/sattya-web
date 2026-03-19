@@ -389,7 +389,7 @@ export default function PropertyBooking({
                             src={iframeSrc}
                             sandbox="allow-top-navigation allow-scripts allow-same-origin"
                             style={{ width: "100%", height: "700px" }}
-                            className="ml-10"
+                            className="md:ml-10"
                         />
 
                     </div>

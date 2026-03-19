@@ -101,7 +101,7 @@ export default function InfoSection({
           </p>
         </div>
         {/* Opening Hours */}
-        <div>
+        <div className="w-full">
           <p className={`caption uppercase text-${themeColor} flex items-center gap-2 mb-6`}>
             <span className={`w-2 h-2 bg-${themeColor}  inline-block shrink-0`} />
             {openingHoursLabel}
