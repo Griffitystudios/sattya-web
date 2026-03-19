@@ -2,20 +2,19 @@
 import { PropertyBookingProps } from "../../components/sections/stay/PropertyBooking";
 
 const sharedAmenities = [
-    { icon: "📶", label: "Fast WiFi ~390 Mbps" },
-    { icon: "🔌", label: "Power backup" },
-    { icon: "🚿", label: "Reliable hot water" },
-    { icon: "🧺", label: "Washing machine" },
-    { icon: "🍳", label: "Well-equipped kitchen" },
-    { icon: "🌿", label: "Three balconies/terraces" },
-    { icon: "🅿️", label: "Secure parking" },
-    { icon: "🧹", label: "Shared space cleaning included" },
-    { icon: "☕", label: "Art Cafe next door" },
-    { icon: "💻", label: "Coworking next door" },
-    { icon: "🎨", label: "Makerspace next door" },
-    { icon: "🔒", label: "Secure building" },
+    { icon: "wifi", label: "Fast WiFi ~390 Mbps" },
+    { icon: "power", label: "Power backup" },
+    { icon: "shower", label: "Reliable hot water" },
+    { icon: "washer", label: "Washing machine" },
+    { icon: "kitchen", label: "Well-equipped kitchen" },
+    { icon: "balcony", label: "Three balconies/terraces" },
+    { icon: "parking", label: "Secure parking" },
+    { icon: "cleaning", label: "Shared space cleaning included" },
+    { icon: "cafe", label: "Art Cafe next door" },
+    { icon: "cowork", label: "Coworking next door" },
+    { icon: "makerspace", label: "Makerspace next door" },
+    { icon: "lock", label: "Secure building" },
 ];
-
 const allRooms = [
     {
         name: "Marigold Room",
@@ -84,9 +83,9 @@ export const properties: Record<string, PropertyBookingProps> = {
 
     "large-room": {
         name: "Marigold Room",
+        badge: "Single Room",
         tagline: "master bedroom at sattya",
-        description:
-            "The largest bedroom in a shared three-bedroom apartment in central Jawalakhel, right next door to Sattya Media Arts Collective. Queen bed, private bathroom, built-in closets, and a small desk. A comfortable base for guests who want to settle into Kathmandu while staying loosely connected to creative work and community.",
+        description: "The largest bedroom in a shared three-bedroom apartment in central Jawalakhel, right next door to Sattya Media Arts Collective. Queen bed, private bathroom, built-in closets, and a small desk. A comfortable base for guests who want to settle into Kathmandu while staying loosely connected to creative work and community.",
         iframeSrc: "https://booking.hospitable.com/widget/a1544d7d-18eb-4731-9904-40596caf07be/2206868",
         location: "Jawalakhel, Lalitpur, Kathmandu",
         size: "152 sq ft (14.1 sq m)",
@@ -94,12 +93,11 @@ export const properties: Record<string, PropertyBookingProps> = {
         bedrooms: 1,
         bathrooms: 1,
         images: ["/images/stay/img1.png", "/images/stay/img2.png", "/images/stay/img3.png", "/images/stay/img3.png", "/images/stay/img3.png"],
-
         rooms: [allRooms[0]],
         amenities: [
-            { icon: "🛁", label: "Private bathroom" },
-            { icon: "🚪", label: "Built-in closets" },
-            { icon: "🖥️", label: "Desk space" },
+            { icon: "bathroom_private", label: "Private bathroom" },
+            { icon: "closet", label: "Built-in closets" },
+            { icon: "desk", label: "Desk space" },
             ...sharedAmenities,
         ],
         sections: [
@@ -120,9 +118,9 @@ Guests share generous common spaces, including a cozy living room, large dining 
 
     "mid-size-room": {
         name: "Tulsi Room",
+        badge: "Single Room",
         tagline: "mid-sized room at sattya",
-        description:
-            "A comfortable bedroom in a shared three-bedroom apartment in central Jawalakhel, right next door to Sattya Media Arts Collective. Queen bed, built-in storage, and a shared bathroom — shared with only one other room and cleaned daily.",
+        description: "A comfortable bedroom in a shared three-bedroom apartment in central Jawalakhel, right next door to Sattya Media Arts Collective. Queen bed, built-in storage, and a shared bathroom — shared with only one other room and cleaned daily.",
         iframeSrc: "https://booking.hospitable.com/widget/a1544d7d-18eb-4731-9904-40596caf07be/2206870",
         location: "Jawalakhel, Lalitpur, Kathmandu",
         size: "110 sq ft (10.2 sq m)",
@@ -132,9 +130,9 @@ Guests share generous common spaces, including a cozy living room, large dining 
         images: ["/images/stay/img1.png", "/images/stay/img2.png", "/images/stay/img3.png", "/images/stay/img3.png", "/images/stay/img3.png"],
         rooms: [allRooms[1]],
         amenities: [
-            { icon: "🚿", label: "Shared bathroom (1 other room)" },
-            { icon: "🗄️", label: "Built-in storage" },
-            { icon: "🖥️", label: "Small desk area" },
+            { icon: "shower", label: "Shared bathroom (1 other room)" },
+            { icon: "closet", label: "Built-in storage" },
+            { icon: "desk", label: "Small desk area" },
             ...sharedAmenities,
         ],
         sections: [
@@ -153,9 +151,9 @@ Guests share generous common spaces, including a cozy living room, large dining 
 
     "small-room": {
         name: "Aasha Room",
+        badge: "Single Room",
         tagline: "cozy room at sattya",
-        description:
-            "A compact, affordable private room within the Sattya Apartment. Double bed, best suited for one person (can fit two). Shared bathroom with one other room. The most affordable option for solo stays in Jawalakhel.",
+        description: "A compact, affordable private room within the Sattya Apartment. Double bed, best suited for one person (can fit two). Shared bathroom with one other room. The most affordable option for solo stays in Jawalakhel.",
         iframeSrc: "https://booking.hospitable.com/widget/a1544d7d-18eb-4731-9904-40596caf07be/2206872",
         location: "Jawalakhel, Lalitpur, Kathmandu",
         size: "90 sq ft (8.4 sq m)",
@@ -163,11 +161,11 @@ Guests share generous common spaces, including a cozy living room, large dining 
         bedrooms: 1,
         bathrooms: 1,
         images: ["/images/stay/img1.png", "/images/stay/img2.png", "/images/stay/img3.png", "/images/stay/img3.png", "/images/stay/img3.png"],
-
         rooms: [allRooms[2]],
         amenities: [
-            { icon: "🚿", label: "Shared bathroom (1 other room)" },
-            { icon: "👤", label: "Best for solo stays" },
+            { icon: "shower", label: "Shared bathroom (1 other room)" },
+            { icon: "solo", label: "Best for solo stays" },
+            { icon: "desk", label: "Small desk area" },
             ...sharedAmenities,
         ],
         sections: [
@@ -185,10 +183,10 @@ Guests share generous common spaces, including a cozy living room, large dining 
     },
 
     "sattya-apartment": {
+        badge: "Entire Apartment",
         name: "Sattya Apartment",
         tagline: "entire three-bedroom home",
-        description:
-            "A full three-bedroom apartment in Jawalakhel, right next door to Sattya Media Arts Collective. Two queen bedrooms, one double bedroom, two bathrooms, a well-equipped kitchen, and spacious living and dining areas. At 116 sq m it offers real space to settle in, not just pass through.",
+        description: "A full three-bedroom apartment in Jawalakhel, right next door to Sattya Media Arts Collective. Two queen bedrooms, one double bedroom, two bathrooms, a well-equipped kitchen, and spacious living and dining areas. At 116 sq m it offers real space to settle in, not just pass through.",
         location: "Jawalakhel, Lalitpur, Kathmandu",
         size: "116 sq m (1,250 sq ft)",
         maxGuests: 6,
@@ -250,24 +248,88 @@ Longer stays are very welcome. The intention is simply to support a good shared 
             "Anyone looking for something that feels more like a home than a hotel.",
         ],
     },
+    "sattya-residence": {
+        name: "Sattya Residence",
+        badge: "Private Apartment",
+        tagline: "private one-bedroom apartment",
+        description:
+            "A quiet, well-appointed private one-bedroom apartment on the 3rd floor of Sattya. Functions as a fully private apartment — the founder's home when in residence, available at select times for short- or mid-term stays. AC for both heating and cooling, dedicated workspace, and privacy while staying closely connected to the shared spaces and activity at Sattya.",
+        iframeSrc: "https://booking.hospitable.com/widget/WIDGET_ID/RESIDENCE_PROPERTY_ID",
+        location: "Jawalakhel, Lalitpur, Kathmandu",
+        size: "TBC",
+        maxGuests: 2,
+        bedrooms: 1,
+        bathrooms: 1,
+        images: [
+            "/images/stay/residence-1.jpg",
+            "/images/stay/residence-2.jpg",
+            "/images/stay/residence-3.jpg",
+        ],
+        rooms: [
+            {
+                name: "Sattya Residence",
+                subtitle: "Private One-Bedroom Apartment",
+                bed: "Queen bed",
+                bathroom: "Private bathroom",
+                size: "TBC",
+                description: "A fully private apartment with living area, kitchen, and dedicated workspace. AC for heating and cooling.",
+            },
+        ],
+        amenities: [
+            { icon: "ac", label: "AC for heating and cooling" },
+            { icon: "bathroom_private", label: "Private bathroom" },
+            { icon: "desk", label: "Dedicated workspace" },
+            { icon: "kitchen", label: "Full kitchen" },
+            { icon: "wifi", label: "Strong Wi-Fi" },
+            { icon: "power", label: "Power backup" },
+            { icon: "shower", label: "Reliable hot water" },
+            { icon: "lock", label: "Secure building" },
+            { icon: "cafe", label: "Art Cafe downstairs" },
+            { icon: "cowork", label: "Coworking downstairs" },
+            { icon: "makerspace", label: "Makerspace downstairs" },
+            { icon: "parking", label: "Secure parking" },
+        ],
+        sections: [
+            {
+                title: "The Space",
+                content: `The Sattya Residence is a private one-bedroom apartment on the 3rd floor of the Sattya building. While it's part of the building, it functions as a fully private apartment — not a shared space.
 
-    // // Legacy slug
-    // "large-room": {
-    //     name: "Marigold Room",
-    //     tagline: "master bedroom at sattya",
-    //     description: "The largest bedroom in a shared three-bedroom apartment in central Jawalakhel.",
-    //     iframeSrc: "https://booking.hospitable.com/widget/a1544d7d-18eb-4731-9904-40596caf07be/2206868",
-    //     location: "Jawalakhel, Lalitpur, Kathmandu",
-    //     size: "152 sq ft (14.1 sq m)",
-    //     maxGuests: 2,
-    //     bedrooms: 1,
-    //     bathrooms: 1,
-    //     images: ["/images/stay/marigold-1.png"],
-    //     rooms: [allRooms[0]],
-    //     amenities: sharedAmenities,
-    //     sections: [],
-    //     notes: sharedNotes,
-    //     goodFor: sharedGoodFor,
-    // },
+The apartment is well equipped for comfortable day-to-day living and focused time. It includes a private bedroom, living area, full kitchen, and a dedicated workspace. AC provides both heating and cooling, making it comfortable year-round.
 
+It has a calm, settled feel — a good place to focus, rest, and work, while being just a short walk from everything Sattya offers.`,
+            },
+            {
+                title: "Access to Sattya",
+                content: `The Sattya Residence sits directly above the Sattya Media Arts Collective. Coworking, the Art Cafe, Makerspace, workshops, film screenings, and informal gatherings are all just downstairs.
+
+You're welcome to drop into Sattya's spaces during open hours. There's no expectation to participate — it's simply available when you want it.`,
+            },
+            {
+                title: "Availability",
+                content: `This space serves as the founder's home when in residence and is available as a short- or mid-term stay at select times.
+
+Availability is limited — if you're interested, reach out early to check dates.`,
+            },
+            neighborhoodSection,
+            {
+                title: "Guest Access",
+                content: `You will have full private access to the entire apartment during your stay. Self check-in is available for late night arrivals — clear instructions are sent in advance.
+
+You're free to come and go as you like. The Sattya team is right downstairs if anything needs attention.`,
+            },
+        ],
+        notes: [
+            "This space is available when not being used as a private residence — availability is limited.",
+            "AC provides both heating and cooling — comfortable year-round.",
+            "Occasional power cuts are normal in Nepal. The building has backup power and Wi-Fi continues to work during outages.",
+            "The apartment is on the 3rd floor — there is no elevator.",
+            "Your stay directly supports Sattya and the creative work happening in the building.",
+        ],
+        goodFor: [
+            "Visiting artists, curators, and creative professionals.",
+            "Researchers or remote workers who want privacy with easy access to community.",
+            "Solo travelers or couples looking for a quiet, well-equipped base in Kathmandu.",
+            "People who want privacy but enjoy having a creative community nearby when they want it."
+        ],
+    },
 };

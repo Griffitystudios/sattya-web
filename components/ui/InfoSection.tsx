@@ -109,15 +109,15 @@ export default function InfoSection({
           <p className="uppercase h3-off leading-snug mb-4">
             {days}
           </p>
-          <span className={`text-[clamp(4.8rem,5vw,7.5rem)] font-display
+          <span className={`text-[clamp(4rem,4vw,7.5rem)] font-display
  leading-none text-${themeColor}`}>
             {openTime}
           </span>
           <span className={`h1 ml-2 uppercase text-${themeColor}`}>AM</span>
-          <span className={` font-display text-[clamp(4.8rem,5vw,7.5rem)]  lg:text-[4.8rem] text-${themeColor} mx-2`}>
+          <span className={` font-display text-[clamp(4rem,4vw,7.5rem)]  text-${themeColor} mx-2`}>
             -
           </span>
-          <span className={`text-[clamp(4.8rem,5vw,7.5rem)] font-display
+          <span className={`text-[clamp(4rem,4vw,7.5rem)] font-display
  leading-none text-${themeColor}`}>
             {closeTime}
           </span>

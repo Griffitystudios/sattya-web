@@ -25,6 +25,11 @@ export default function ImageGallery({ images, name }: ImageGalleryProps) {
 
     if (!images || images.length === 0) return null;
 
+    const openLightbox = (index: number) => {
+        setLightboxIndex(index);
+        setLightboxOpen(true);
+    };
+
     /* =========================
        NAVIGATION (GSAP animated)
     ========================== */
@@ -203,22 +208,30 @@ export default function ImageGallery({ images, name }: ImageGalleryProps) {
             ========================== */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-1 h-[50vh] md:h-[60vh]">
                 {/* Main */}
-                <div className="col-span-2 row-span-2 relative">
+                <button
+                    className="col-span-2 row-span-2 relative w-full h-full"
+                    onClick={() => openLightbox(0)}
+                    aria-label={`Open ${name} image 1`}
+                >
                     <Image src={images[0]} alt={name} fill className="object-cover" priority />
-                </div>
+                </button>
 
                 {/* Second */}
                 {images[1] && (
-                    <div className="relative">
+                    <button
+                        className="relative w-full h-full"
+                        onClick={() => openLightbox(1)}
+                        aria-label={`Open ${name} image 2`}
+                    >
                         <Image src={images[1]} alt={`${name} 2`} fill className="object-cover" />
-                    </div>
+                    </button>
                 )}
 
                 {/* Third */}
                 {images[2] && (
                     <button
                         className="relative group w-full h-full"
-                        onClick={() => setLightboxOpen(true)}
+                        onClick={() => openLightbox(2)}
                         aria-label="Open image gallery"
                     >
                         <Image src={images[2]} alt={`${name} 3`} fill className="object-cover" />
@@ -326,7 +339,6 @@ export default function ImageGallery({ images, name }: ImageGalleryProps) {
                                     <Image src={img} alt={`Thumbnail ${i + 1}`} fill className="object-cover" />
                                 </div>
                             </button>
-
                         ))}
                     </div>
                 </div>

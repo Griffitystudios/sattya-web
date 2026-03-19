@@ -28,9 +28,9 @@ export default function HomeSearch() {
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-20">
             {/* Heading */}
             <div className="w-fit mb-10 mx-auto">
-                <h2 className="h1 text-stay uppercase leading-none">
+                <h2 className="h1 text-stay uppercase leading-none"> Book your {" "}
                     <span className="relative inline-block">
-                        Book your accomodation
+                        accomodation
                         <span className="h1-alt text-black absolute lowercase -bottom-3 lg:-bottom-5 -right-2">
                             at sattya
                         </span>

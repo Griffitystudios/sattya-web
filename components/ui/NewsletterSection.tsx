@@ -54,7 +54,7 @@ export default function NewsletterSection({
                             <span className="font-display relative inline-block text-[clamp(3rem,7vw,6rem)]">
                                 GET YOUR
                                 <span className="font-scratchy text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-black absolute lowercase -bottom-5 lg:-bottom-8 xl:-bottom-12 -right-20">
-                                    week drop
+                                    weekly drop
                                 </span>
                             </span>
                         </h2>

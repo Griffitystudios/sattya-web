@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import ImageGallery from "../../ui/ImageGallery";
+import { IconKey, icons } from "../../../configs/icons";
 
 interface Room {
     name: string;
@@ -16,7 +17,7 @@ interface Room {
 }
 
 interface Amenity {
-    icon: React.ReactNode;
+    icon: IconKey;
     label: string;
 }
 
@@ -27,6 +28,7 @@ export interface PropertySection {
 }
 
 export interface PropertyBookingProps {
+    badge?: string;
     name: string;
     tagline?: string;
     description?: string;
@@ -55,6 +57,7 @@ export default function PropertyBooking({
     size,
     maxGuests,
     bedrooms,
+    badge,
     bathrooms,
     sections = [],
     notes = [],
@@ -119,7 +122,7 @@ export default function PropertyBooking({
                 <div className="relative text-white px-6 sm:px-10 lg:px-16 py-40 lg:py-40 max-h-150">
                     <div className="max-w-7xl mx-auto flex flex-col gap-4">
                         <p className="caption uppercase tracking-widest text-white/60">
-                            Shared Space
+                            {badge}
                         </p>
                         <h1
                             className="uppercase leading-none text-[clamp(2.5rem,6vw,5.5rem)] text-white"
@@ -320,7 +323,7 @@ export default function PropertyBooking({
                                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                                     {amenities.map((amenity, i) => (
                                         <div key={i} className="flex items-center gap-3">
-                                            <span className="text-xl">{amenity.icon}</span>
+                                            <span className="text-xl">{icons[amenity.icon]}</span>
                                             <p className="caption text-black/70">{amenity.label}</p>
                                         </div>
                                     ))}
