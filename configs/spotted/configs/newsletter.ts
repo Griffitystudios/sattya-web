@@ -2,7 +2,7 @@
 import { NewsletterSectionProps } from "../../../components/ui/NewsletterSection";
 
 export const newsletterConfig: NewsletterSectionProps = {
-    substackUrl: "https://susanshrestha.substack.com",
+    substackUrl: "https://spottedbysattya.substack.com",
     submitEventHref: "/submit-event",
     description: "A community-driven weekly dispatch of what's actually worth leaving the house for.",
     subscribeNote: "We respect your inbox. No spam, just local culture.",

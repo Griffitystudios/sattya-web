@@ -15,7 +15,7 @@ export interface NewsletterSectionProps {
 }
 
 export default function NewsletterSection({
-    substackUrl = "https://susanshrestha.substack.com",
+    substackUrl = "https://spottedbysattya.substack.com",
     submitEventHref = "/submit-event",
     privacyText = "We will never sell or give away your email address or any other information.",
     disclaimerText = "Events may change— always double-check with the organizer!",
@@ -26,26 +26,8 @@ export default function NewsletterSection({
     const [email, setEmail] = useState("");
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!email) return;
-        setStatus("loading");
-
-        try {
-            // Redirect to substack with email pre-filled
-            window.open(
-                `${substackUrl}/embed?email=${encodeURIComponent(email)}`,
-                "_blank"
-            );
-            setStatus("success");
-            setEmail("");
-        } catch {
-            setStatus("error");
-        }
-    };
-
     return (
-        <section className="w-full px-6 sm:px-10 lg:px-16 py-16 lg:py-24 bg-white">
+        <section className="w-full px-6 sm:px-10 lg:px-16 py-16 lg:py-24 ">
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
                 {/* LEFT — heading + description + footnotes */}
@@ -88,24 +70,14 @@ export default function NewsletterSection({
 
                     {/* Email form */}
                     <div className="flex flex-col gap-2">
-                        <form onSubmit={handleSubmit} className="flex items-stretch border border-black">
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="Enter your email"
-                                required
-                                className="flex-1 px-4 py-3 p text-black placeholder:text-black/40 outline-none bg-white"
-                            />
-                            <button
-                                type="submit"
-                                disabled={status === "loading"}
-                                className="bg-black text-white px-6 py-3 p-bold hover:bg-black/80 transition-colors shrink-0 disabled:opacity-50"
-                            >
-                                {status === "loading" ? "..." : "Subscribe"}
-                            </button>
-                        </form>
-                        <iframe src="https://susanshrestha.substack.com/embed" width="480" height="150"  ></iframe>
+
+                        <a
+                            href="https://spottedbysattya.substack.com/subscribe"
+                            className="bg-black w-full text-white px-6 py-3 p-bold text-center hover:bg-black/80 transition-colors shrink-0 disabled:opacity-50"
+                        >
+                            Subscribe
+                        </a>
+
                         {status === "success" && (
                             <p className="caption text-green-600">Check your email to confirm!</p>
                         )}
