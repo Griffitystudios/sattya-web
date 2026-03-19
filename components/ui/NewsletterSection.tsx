@@ -93,11 +93,19 @@ export default function NewsletterSection({
 
                     {/* Submit event */}
                     <div className="flex flex-col gap-3">
+
+
                         <Link
                             href={submitEventHref}
-                            className="w-full text-center border-2 border-black px-6 py-3 p-bold hover:bg-black hover:text-white transition-colors"
+                            className="group relative inline-flex w-full items-center justify-center"
                         >
-                            Submit your Event
+                            {/* Shadow layer */}
+                            <div className="absolute translate-x-1 translate-y-1 w-full h-full border-2 border-black bg-black opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1 group-hover:translate-y-1" />
+
+                            {/* Main button */}
+                            <div className="relative w-full text-center border-2 border-black px-6 py-3 font-bold bg-white text-black transition-all duration-200 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5">
+                                Submit your Event
+                            </div>
                         </Link>
                         <p className="caption text-black/50 text-center">{submitNote}</p>
                     </div>
