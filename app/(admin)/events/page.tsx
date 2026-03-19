@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { FiPlus, FiEdit2, FiTrash2, FiEye, FiX, FiCalendar, FiMapPin, FiAlertCircle } from 'react-icons/fi';
 
-const PAGES = ['makerspace', 'artcafe', 'cowork', 'podlab','loft','rooftop'] as const;
+const PAGES = ['makerspace', 'artcafe', 'cowork', 'podlab', 'loft', 'rooftop'] as const;
 type PageType = typeof PAGES[number];
 
 interface Event {
@@ -28,7 +28,7 @@ interface FormData {
   href: string;
 }
 
-const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const defaultForm: FormData = {
   title: '',
@@ -192,7 +192,7 @@ export default function EventsPage() {
 
   return (
     <div className="min-h-screen p-4 md:p-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-8 gap-4">
@@ -226,11 +226,10 @@ export default function EventsPage() {
             <button
               key={p}
               onClick={() => setFilterPage(p)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium capitalize transition-colors ${
-                filterPage === p
+              className={`px-4 py-1.5 rounded-full text-sm font-medium capitalize transition-colors ${filterPage === p
                   ? 'bg-indigo-600 text-white'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
+                }`}
             >
               {p}
             </button>

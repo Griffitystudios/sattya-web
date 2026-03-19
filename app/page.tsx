@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { generateMetadata } from "../lib/seo";
-import SubstackNewsletter from "../components/sections/SubstackNewsletter";
+import SubstackNewsletter from "../components/sections/spotted/SubstackNewsletter";
 import HomepageHero from "../components/sections/homepage/HomepageHero";
 
 export const metadata: Metadata = generateMetadata(

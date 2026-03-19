@@ -28,17 +28,18 @@ export interface NavProps {
   brandName?: string;
   illustrationSrc?: string;
   sattyaLogoSrc?: string;
+  sattyaLogoTopSrc?: string; // top-left logo
   spaceLogos?: { src: string; alt: string }[];
   tagline?: string;
   links: NavLink[];
   contact?: NavContact;
   socials?: NavSocials;
 }
-
 export default function Nav({
   brandName = "SATTYA MEDIA ARTS COLLECTIVE",
   illustrationSrc,
   sattyaLogoSrc,
+  sattyaLogoTopSrc,
   spaceLogos = [],
   tagline,
   links,
@@ -134,6 +135,19 @@ export default function Nav({
 
   return (
     <>
+      {/* Top Left Logo */}
+      {sattyaLogoTopSrc && (
+        <div className="absolute top-6 left-6 md:top-10 md:left-12 z-[100]">
+          <Image
+            src={sattyaLogoTopSrc}
+            alt="Sattya Arts"
+            width={196}
+            height={90}
+            priority
+            className="h-12 md:h-16 w-auto object-contain"
+          />
+        </div>
+      )}
       {/* Hamburger */}
       <button
         onClick={() => setOpen(!open)}
@@ -141,14 +155,12 @@ export default function Nav({
         className="absolute top-16 right-15 z-[100] flex flex-col gap-[6px] h-10"
       >
         <span
-          className={`block w-8 h-[3px] bg-white shadow-2xl shadow-black transition-all duration-300 origin-center ${
-            open ? "rotate-45 translate-y-[5px]" : ""
-          }`}
+          className={`block w-8 h-[3px] bg-white shadow-2xl shadow-black transition-all duration-300 origin-center ${open ? "rotate-45 translate-y-[5px]" : ""
+            }`}
         />
         <span
-          className={`block w-8 h-[3px] bg-white shadow-2xl shadow-black transition-all duration-300 ${
-            open ? "-rotate-45 -translate-y-[4px]" : ""
-          }`}
+          className={`block w-8 h-[3px] bg-white shadow-2xl shadow-black transition-all duration-300 ${open ? "-rotate-45 -translate-y-[4px]" : ""
+            }`}
         />
       </button>
 

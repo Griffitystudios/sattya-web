@@ -139,7 +139,7 @@ export function Hero({
       </div>
 
       {/* Top Left Logo */}
-      <div className="top-logo absolute top-6 left-6 md:top-10 md:left-12 z-20">
+      {/* <div className="top-logo absolute top-6 left-6 md:top-10 md:left-12 z-20">
         <Image
           src="/images/sattyaarts.png"
           alt="Sattya Arts"
@@ -148,7 +148,7 @@ export function Hero({
           priority
           className="h-12 md:h-16 w-auto object-contain"
         />
-      </div>
+      </div> */}
 
       {/* Center Logo / Content */}
       <div className="center-logo-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">

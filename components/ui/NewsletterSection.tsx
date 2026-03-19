@@ -33,13 +33,13 @@ export default function NewsletterSection({
                 {/* LEFT — heading + description + footnotes */}
                 <div className="flex flex-col gap-6">
 
-                    {/* Heading */}
+                    {/* Heading
                     <div>
                         <h2
                             className="uppercase leading-none text-[clamp(3rem,7vw,6rem)]"
                             style={{ fontFamily: "var(--font-display)" }}
                         >
-                            GET YOURS
+                            GET YOUR
                         </h2>
                         <p
                             className="text-black lowercase text-[clamp(1.5rem,3.5vw,3rem)] leading-none -mt-2"
@@ -47,6 +47,17 @@ export default function NewsletterSection({
                         >
                             weekly drop
                         </p>
+                    </div> */}
+                    {/* Heading */}
+                    <div className="w-fit mb-10">
+                        <h2 className=" uppercase leading-none">
+                            <span className="font-display relative inline-block text-[clamp(3rem,7vw,6rem)]">
+                                GET YOUR
+                                <span className="font-scratchy text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-black absolute lowercase -bottom-5 lg:-bottom-8 xl:-bottom-12 -right-20">
+                                    week drop
+                                </span>
+                            </span>
+                        </h2>
                     </div>
 
                     {/* Description */}

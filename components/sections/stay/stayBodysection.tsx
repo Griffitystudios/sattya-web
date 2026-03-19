@@ -5,7 +5,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 interface StaybodySectionProps {
@@ -15,7 +14,7 @@ interface StaybodySectionProps {
 
 export default function StaybodySection({
   image1Src = "/images/stay/img1.png",
-  image2Src = "/images/stay/img2.png",
+
 }: StaybodySectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
@@ -131,19 +130,19 @@ export default function StaybodySection({
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden px-4 sm:px-6 lg:px-8 "
+      className="relative overflow-hidden px-4 sm:px-6 lg:px-8 mb-40 "
 
     >
       <div className="relative z-10 max-w-7xl mx-auto">
 
         {/* ── HEADING ── */}
-        <div ref={headingRef} className="my-40 w-full flex flex-col items-center">
+        <div ref={headingRef} className="my-20 lg:my-25 w-full flex flex-col items-center">
           <div>
             <h2 className="uppercase leading-none" style={{ fontFamily: "var(--font-display)" }}>
 
               {/* Line 1 — A PLACE */}
               <div
-                className="text-[clamp(2.8rem,6vw,9.5rem)]  md:-translate-x-10 lg:-translate-x-15 xl:-translate-x-20 leading-10 md:leading-10 lg:leading-18 xl:leading-22"
+                className="text-[clamp(3rem,6vw,5rem)] translate-x-4 md:-translate-x-10 lg:-translate-x-15 xl:-translate-x-20 leading-10 md:leading-15 lg:leading-12 xl:leading-10"
                 style={{ color: "#A7937A" }}
               >
                 A PLACE
@@ -154,11 +153,11 @@ export default function StaybodySection({
                 className="flex items-baseline gap-4"
                 style={{ marginLeft: "clamp(2rem,10vw,9rem)" }}
               >
-                <span className="text-black text-[clamp(2.8rem,6vw,9.5rem)] leading-none">
+                <span className="text-black text-[clamp(3rem,6vw,5rem)] leading-none">
                   TO LAND
                 </span>
                 <span
-                  className="text-black lowercase text-[clamp(2.8rem,5vw,8rem)] leading-none"
+                  className="text-black lowercase text-[clamp(3rem,5vw,8rem)] leading-none"
                   style={{ fontFamily: "var(--font-scratchy)" }}
                 >
                   at sattya
@@ -239,116 +238,7 @@ export default function StaybodySection({
           </div>
         </div>
 
-        {/* ── BODY ROW 2 ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start mt-60">
-          <div className="anim-block relative pl-15 pb-10">
 
-            {/* Vertical X column — left side, stops before bottom row */}
-            <div
-              ref={xPatternRef}
-              className="absolute left-0 top-0 bottom-10 z-0 flex flex-col gap-6 justify-end  "
-            >
-              {Array.from({ length: 5 }).map((_, i) => (
-                <span
-                  key={i}
-                  className="text-sm xl:text-lg font-black leading-none select-none text-stay"
-                >
-                  ✕
-                </span>
-              ))}
-            </div>
-            <div
-              ref={xPatternRef}
-              className="absolute left-6.5 top-0 bottom-10 z-0 flex flex-col gap-6 justify-end "
-            >
-              {Array.from({ length: 5 }).map((_, i) => (
-                <span
-                  key={i}
-                  className="text-sm xl:text-lg font-black leading-none select-none text-stay"
-                >
-                  ✕
-                </span>
-              ))}
-            </div>
-            <div
-              ref={xPatternRef}
-              className="absolute left-13 top-0 bottom-10 z-0 flex flex-col gap-6 justify-end "
-            >
-              {Array.from({ length: 5 }).map((_, i) => (
-                <span
-                  key={i}
-                  className="text-sm xl:text-lg font-black leading-none select-none text-stay"
-                >
-                  ✕
-                </span>
-              ))}
-            </div>
-
-            {/* Horizontal X row — bottom, full width */}
-            <div className="absolute bottom-0 left-0 right-0 z-0 flex justify-start gap-3 ">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <span
-                  key={i}
-                  className="text-sm xl:text-lg font-black leading-none select-none text-stay"
-                >
-                  ✕
-                </span>
-              ))}
-            </div>
-
-            {/* Photo — on top */}
-            <div className="relative z-10 border-2 border-black">
-              <Image
-                src={image2Src}
-                alt="Stay at Sattya"
-                width={800}
-                height={600}
-                className="w-full h-auto object-cover  block"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-
-          </div>
-          {/* LEFT */}
-          <div ref={col2Ref} className="flex flex-col gap-8">
-            {/* Block 1 — drop cap */}
-            <p className="anim-block p text-black">
-              <span className="float-left text-[clamp(3.001rem,2.744rem_+_1.372vw,3.859rem)] leading-[0.75] mr-2 mt-1 text-stay" style={{ fontFamily: "var(--font-display)" }}>
-                A
-              </span>
-              ll of the spaces are well maintained, clean, and thoughtfully set up,
-              with responsive management and a lived-in, welcoming feel. It's
-              meant to feel like a home away from home, somewhere you can settle
-              in, focus, and also step out into community when you want to.
-            </p>
-
-            {/* Block 2 — plain paragraph */}
-            <p className="anim-block p text-black">
-              Downstairs and nearby, Sattya offers a coworking space, a cafe for
-              coffee and casual meetings, and a regular rhythm of events, from
-              screenings and workshops to informal gatherings in the Art Cafe.
-              There's usually something happening, but never an obligation to
-              participate.
-            </p>
-
-            {/* Block 3 — filled box with dark shadow */}
-            <div className="anim-block relative mt-4">
-              <div className="absolute z-0 bg-black" style={{ bottom: "-8px", right: "-8px", width: "100%", height: "100%" }} />
-              <div className="relative z-10 p-8 bg-stay">
-                <p className="p-bold text-white">
-                  For guests working on specific projects, there may also be
-                  opportunities for support, such as introductions,
-                  translation, or local connections. These are arranged by
-                  inquiry and advance planning, depending on timing and
-                  capacity.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT — photo 2 with X pattern L-shape */}
-
-        </div>
 
       </div>
 

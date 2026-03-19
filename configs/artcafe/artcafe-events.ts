@@ -1,5 +1,5 @@
 // configs/artcafe-events.ts
-import {EventsSectionProps} from "../../components/ui/EventsSection";
+import { EventsSectionProps } from "../../components/ui/EventsSection";
 
 export const artCafeEventsConfig: EventsSectionProps = {
     heading: "Upcoming Events",
