@@ -137,7 +137,7 @@ export default function Nav({
     <>
       {/* Top Left Logo */}
       {sattyaLogoTopSrc && (
-        <div className="absolute top-6 left-6 md:top-10 md:left-12 z-[100]">
+        <Link href="#" className="absolute left-6 top-12 md:top-10 md:left-12  z-10">
           <Image
             src={sattyaLogoTopSrc}
             alt="Sattya Arts"
@@ -146,7 +146,7 @@ export default function Nav({
             priority
             className="h-12 md:h-16 w-auto object-contain"
           />
-        </div>
+        </Link>
       )}
       {/* Hamburger */}
       <button
