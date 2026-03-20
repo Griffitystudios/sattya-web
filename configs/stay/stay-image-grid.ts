@@ -16,6 +16,7 @@ export const stayImageGridConfig: ImageGridProps = {
             alt: "Creative Residency",
             label: "Creative\nResidency",
             hoverText: "A work-trade stay for artists, makers, and creatives contributing to Sattya. Private room in exchange for a set number of hours supporting Sattya's programs and spaces.",
+            href: "/stay/residency-room",
         },
         {
             image: "/images/stay/img2.png",

@@ -7,6 +7,7 @@ import Image from "next/image";
 import ImageGallery from "../../ui/ImageGallery";
 import { IconKey, icons } from "../../../configs/icons";
 import gsap from "gsap";
+import { BookingType } from "../../../configs/stay/stayOptions";
 
 interface Room {
     name: string;
@@ -33,7 +34,7 @@ export interface PropertyBookingProps {
     name: string;
     tagline?: string;
     description?: string;
-    iframeSrc: string;
+    iframeSrc?: string;
     images?: string[];
     rooms?: Room[];
     amenities?: Amenity[];
@@ -45,10 +46,17 @@ export interface PropertyBookingProps {
     sections?: PropertySection[]; // ← new
     notes?: string[];             // ← new
     goodFor?: string[];           // ← new
+    bookingType?: BookingType;
+    inquireEmail?: string;
+    inquireFormHref?: string;
+    inquireLabel?: string;
 }
 export default function PropertyBooking({
     name,
-    tagline,
+    bookingType,
+    inquireEmail,
+    inquireFormHref,
+    inquireLabel,
     description,
     iframeSrc,
     images = [],
@@ -109,7 +117,7 @@ export default function PropertyBooking({
 
     useEffect(() => {
         const iframe = iframeRef.current;
-        if (!iframe) return;
+        if (!iframe || !iframeSrc) return; // ← add !iframeSrc guard
 
         const checkin = searchParams.get("checkin");
         const checkout = searchParams.get("checkout");
@@ -126,7 +134,6 @@ export default function PropertyBooking({
                 `checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&pets=${pets}&infants=${infants}`;
         }
     }, [searchParams, iframeSrc]);
-
     return (
         <div className="min-h-screen bg-white">
             <div className="relative">
@@ -307,7 +314,7 @@ export default function PropertyBooking({
                                         {sections[0].content}
                                     </p>
                                     {/* Fade gradient over truncated text */}
-                                    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+                                    <div className="absolute bottom-0 left-0 right-0 h-12 bg-linear-to-t from-white to-transparent pointer-events-none" />
                                 </div>
 
                                 <button
@@ -392,20 +399,97 @@ export default function PropertyBooking({
                         )}
                     </div>
 
-                    {/* RIGHT — sticky booking widget */}
+
+                    {/* RIGHT — booking or inquiry */}
                     <div className="lg:sticky lg:top-8 h-fit">
+                        {bookingType === "hospitable" && iframeSrc && (
+                            <iframe
+                                ref={iframeRef}
+                                id="booking-iframe"
+                                src={iframeSrc}
+                                sandbox="allow-top-navigation allow-scripts allow-same-origin"
+                                style={{ width: "100%", height: "700px" }}
+                                className="md:ml-10"
+                            />
+                        )}
 
-                        <iframe
-                            ref={iframeRef}
-                            id="booking-iframe"
-                            src={iframeSrc}
-                            sandbox="allow-top-navigation allow-scripts allow-same-origin"
-                            style={{ width: "100%", height: "700px" }}
-                            className="md:ml-10"
-                        />
+                        {(bookingType === "inquire" || bookingType === "apply") && (
+                            <div className="md:ml-10 border-2 border-black p-8 flex flex-col gap-6">
+                                {/* Header */}
+                                <div className="flex flex-col gap-2">
+                                    <span className="caption uppercase text-stay tracking-widest">
+                                        {bookingType === "apply" ? "Work-Trade Residency" : "Inquire About This Space"}
+                                    </span>
+                                    <h3
+                                        className="text-[clamp(1.5rem,3vw,2rem)] uppercase leading-none"
+                                        style={{ fontFamily: "var(--font-display)" }}
+                                    >
+                                        {bookingType === "apply" ? "Apply to Stay" : "Get in Touch"}
+                                    </h3>
+                                    <p className="p text-black/60">
+                                        {bookingType === "apply"
+                                            ? "Tell us about yourself and what you'd like to contribute. We'll be in touch to discuss fit and availability."
+                                            : "This space has limited availability. Reach out directly and we'll get back to you."}
+                                    </p>
+                                </div>
 
+                                <div className="h-px bg-black/10" />
+
+                                {/* Quick details */}
+                                <div className="flex flex-col gap-3">
+                                    {maxGuests && (
+                                        <div className="flex justify-between">
+                                            <span className="caption text-black/50 uppercase">Guests</span>
+                                            <span className="p-bold">{maxGuests}</span>
+                                        </div>
+                                    )}
+                                    {size && (
+                                        <div className="flex justify-between">
+                                            <span className="caption text-black/50 uppercase">Size</span>
+                                            <span className="p-bold">{size}</span>
+                                        </div>
+                                    )}
+                                    {location && (
+                                        <div className="flex justify-between">
+                                            <span className="caption text-black/50 uppercase">Location</span>
+                                            <span className="p-bold text-right">{location}</span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="h-px bg-black/10" />
+
+                                {/* CTA */}
+                                <div className="flex flex-col gap-3">
+                                    {inquireFormHref ? (
+                                        <a
+                                            href={inquireFormHref}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-full text-center bg-black text-white p-bold py-3 hover:bg-stay transition-colors"
+                                        >
+                                            {inquireLabel ?? (bookingType === "apply" ? "Apply Now" : "Send Inquiry")}
+                                        </a>
+                                    ) : null}
+
+                                    {inquireEmail && (
+                                        <a
+                                            href={`mailto:${inquireEmail}?subject=${encodeURIComponent(`Inquiry: ${name}`)}`}
+                                            className="w-full text-center border-2 border-black p-bold py-3 hover:bg-black hover:text-white transition-colors"
+                                        >
+                                            Email us directly
+                                        </a>
+                                    )}
+                                </div>
+
+                                <p className="caption text-black/40 text-center">
+                                    {bookingType === "apply"
+                                        ? "Availability depends on current programs and capacity."
+                                        : "We typically respond within 24 hours."}
+                                </p>
+                            </div>
+                        )}
                     </div>
-
                 </div>
             </div>
         </div>

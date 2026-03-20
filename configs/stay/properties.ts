@@ -83,7 +83,8 @@ export const properties: Record<string, PropertyBookingProps> = {
 
     "large-room": {
         name: "Marigold Room",
-        badge: "Single Room",
+        badge: "Single Room | Shared",
+        bookingType: "hospitable",
         tagline: "master bedroom at sattya",
         description: "The largest bedroom in a shared three-bedroom apartment in central Jawalakhel, right next door to Sattya Media Arts Collective. Queen bed, private bathroom, built-in closets, and a small desk. A comfortable base for guests who want to settle into Kathmandu while staying loosely connected to creative work and community.",
         iframeSrc: "https://booking.hospitable.com/widget/a1544d7d-18eb-4731-9904-40596caf07be/2206868",
@@ -119,6 +120,8 @@ Guests share generous common spaces, including a cozy living room, large dining 
     "mid-size-room": {
         name: "Tulsi Room",
         badge: "Single Room",
+        bookingType: "hospitable",
+
         tagline: "mid-sized room at sattya",
         description: "A comfortable bedroom in a shared three-bedroom apartment in central Jawalakhel, right next door to Sattya Media Arts Collective. Queen bed, built-in storage, and a shared bathroom — shared with only one other room and cleaned daily.",
         iframeSrc: "https://booking.hospitable.com/widget/a1544d7d-18eb-4731-9904-40596caf07be/2206870",
@@ -151,6 +154,7 @@ Guests share generous common spaces, including a cozy living room, large dining 
 
     "small-room": {
         name: "Aasha Room",
+        bookingType: "hospitable",
         badge: "Single Room",
         tagline: "cozy room at sattya",
         description: "A compact, affordable private room within the Sattya Apartment. Double bed, best suited for one person (can fit two). Shared bathroom with one other room. The most affordable option for solo stays in Jawalakhel.",
@@ -185,6 +189,7 @@ Guests share generous common spaces, including a cozy living room, large dining 
     "sattya-apartment": {
         badge: "Entire Apartment",
         name: "Sattya Apartment",
+        bookingType: "hospitable",
         tagline: "entire three-bedroom home",
         description: "A full three-bedroom apartment in Jawalakhel, right next door to Sattya Media Arts Collective. Two queen bedrooms, one double bedroom, two bathrooms, a well-equipped kitchen, and spacious living and dining areas. At 116 sq m it offers real space to settle in, not just pass through.",
         location: "Jawalakhel, Lalitpur, Kathmandu",
@@ -254,9 +259,13 @@ Longer stays are very welcome. The intention is simply to support a good shared 
         tagline: "private one-bedroom apartment",
         description:
             "A quiet, well-appointed private one-bedroom apartment on the 3rd floor of Sattya. Functions as a fully private apartment — the founder's home when in residence, available at select times for short- or mid-term stays. AC for both heating and cooling, dedicated workspace, and privacy while staying closely connected to the shared spaces and activity at Sattya.",
-        iframeSrc: "https://booking.hospitable.com/widget/WIDGET_ID/RESIDENCE_PROPERTY_ID",
+
         location: "Jawalakhel, Lalitpur, Kathmandu",
         size: "TBC",
+        inquireEmail: "hello@sattya.org",
+        inquireFormHref: "https://forms.google.com/YOUR_FORM_ID",
+        inquireLabel: "Inquire About Availability",
+        bookingType: "inquire",
         maxGuests: 2,
         bedrooms: 1,
         bathrooms: 1,
@@ -334,6 +343,72 @@ You're free to come and go as you like. The Sattya team is right downstairs if a
             "Researchers or remote workers who want privacy with easy access to community.",
             "Solo travelers or couples looking for a quiet, well-equipped base in Kathmandu.",
             "People who want privacy but enjoy having a creative community nearby when they want it."
+        ],
+    },
+    "residency-room": {
+        badge: "Work-Trade",
+        name: "Residency Room",
+        tagline: "work-trade stay at sattya",
+        bookingType: "apply",
+        inquireEmail: "hello@sattya.org",
+        inquireFormHref: "https://forms.google.com/YOUR_FORM_ID",
+        inquireLabel: "Apply to Residency",
+        location: "Jawalakhel, Lalitpur, Kathmandu",
+        size: "TBC",
+        maxGuests: 1,
+        bedrooms: 1,
+        bathrooms: 1,
+        images: ["/images/stay/residency-1.jpg"],
+        rooms: [],
+        amenities: [
+            { icon: "lock", label: "Private room" },
+            { icon: "shower", label: "Shared bathroom" },
+            { icon: "wifi", label: "Strong Wi-Fi" },
+            { icon: "cafe", label: "Art Cafe access" },
+            { icon: "cowork", label: "Coworking access" },
+            { icon: "makerspace", label: "Makerspace access" },
+            { icon: "cleaning", label: "Community meals (details vary)" },
+        ],
+        sections: [
+            {
+                title: "About this space",
+                content: `A simple private room located within the Sattya building, designed for short- and mid-term stays through a work-trade residency model.
+
+The room offers a comfortable, private base for creatives who want to be actively involved in what's happening at Sattya — not just passing through.`,
+            },
+            {
+                title: "How it works",
+                content: `Residents contribute a set number of hours per week supporting Sattya's programs, spaces, or projects. In exchange, accommodation is covered.
+
+The nature of the contribution is agreed upon in advance and varies based on your skills and what Sattya needs at the time. Past residents have supported workshops, events, the cafe, the makerspace, and documentation work.`,
+            },
+            {
+                title: "What's included",
+                content: `Private room within the Sattya building
+Shared bathroom
+Access to Sattya spaces during open hours
+Community meals (details vary by residency period)`,
+            },
+            neighborhoodSection,
+            {
+                title: "Availability",
+                content: `Availability depends on current programs and capacity. Residency periods are typically agreed in advance.
+
+If you're interested, tell us a bit about yourself, what you do, and what you'd like to contribute. We'll be in touch to discuss fit and timing.`,
+            },
+        ],
+        notes: [
+            "Availability depends on current programs and capacity.",
+            "Residency terms — hours, scope, and duration — are agreed upon in advance.",
+            "This is not a standard booking. Apply via the form and we'll follow up.",
+            "Your stay directly supports Sattya and the creative work happening in the building.",
+        ],
+        goodFor: [
+            "Visiting artists, makers, and creatives.",
+            "Facilitators and collaborators with skills to contribute.",
+            "People who want to be actively involved, not just observers.",
+            "Longer stays on a budget with meaningful exchange.",
+            "Anyone who wants to plug into a creative community while they're in Kathmandu.",
         ],
     },
 };
