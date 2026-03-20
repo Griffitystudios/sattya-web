@@ -151,14 +151,21 @@ export function Hero({
       </div> */}
 
       {/* Center Logo / Content */}
-      <div className="center-logo-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
+      <div className="center-logo-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none flex flex-col items-center">
         <Image
           height={400}
           width={400}
           src={logoSrc}
           alt="Sattya Logo"
           priority
-          className={`  object-contain drop-shadow-[0_10px_35px_rgba(0,0,0,0.5)] ${className || "w-48 h-48 md:w-64 md:h-64"} `}
+          className={`object-contain drop-shadow-[0_10px_35px_rgba(0,0,0,0.5)] ${className || "w-48 md:w-64"}`}
+        />
+        <Image
+          src="/images/ui/@Sattya.svg"
+          alt="@Sattya"
+          width={120}
+          height={30}
+          className="w-auto h-6 md:h-8 object-contain translate-x-10"
         />
       </div>
 
