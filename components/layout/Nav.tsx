@@ -152,7 +152,7 @@ export default function Nav({
       <button
         onClick={() => setOpen(!open)}
         aria-label={open ? "Close menu" : "Open menu"}
-        className="absolute top-16 right-15 z-[100] flex flex-col gap-[6px] h-10"
+        className={` top-16 right-15 w-fit z-[100] flex flex-col gap-[6px] h-10 ${open ? "fixed" : "absolute"}`}
       >
         <span
           className={`block w-8 h-[3px] bg-white shadow-2xl shadow-black transition-all duration-300 origin-center ${open ? "rotate-45 translate-y-[5px]" : ""
@@ -229,7 +229,7 @@ export default function Nav({
           {/* RIGHT */}
           <div
             ref={rightPanelRef}
-            className="flex flex-col h-full bg-black overflow-y-auto p-8 md:p-10 pt-20 md:pt-0"
+            className="flex flex-col h-full bg-black overflow-y-auto p-8 md:p-10 pt-20 md:pt-25"
           >
             <nav className="flex flex-col gap-8 flex-1 mt-4">
               {links.map((link, i) => (
