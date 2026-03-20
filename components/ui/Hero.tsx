@@ -161,7 +161,7 @@ export function Hero({
           className={`object-contain drop-shadow-[0_10px_35px_rgba(0,0,0,0.5)] ${className || "w-48 md:w-64"}`}
         />
         <Image
-          src="/images/ui/@Sattya.svg"
+          src="/images/ui/atSattya.svg"
           alt="@Sattya"
           width={120}
           height={30}
