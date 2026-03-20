@@ -348,7 +348,7 @@ export default function CoWorkSection({
                 WORKSHOP{" "}
                 <span
                   ref={togetherRef}
-                  className="h1-alt text-black absolute lowercase -bottom-5 lg:-bottom-4 lg:-right-40 whitespace-nowrap"
+                  className="h1-alt text-black absolute lowercase -bottom-5 -right-20 lg:-bottom-4 lg:-right-40 whitespace-nowrap"
                 >
                   for getting things done.
                 </span>

@@ -7,6 +7,6 @@ export const spottedConfig: HeroProps = {
 
     scrollText: "SCROLL TO EXPLORE",
     className: "w-150 h-150",
-
+    page: "spotted",
     backgroundImage: "/images/spotted/img1.png",
 };

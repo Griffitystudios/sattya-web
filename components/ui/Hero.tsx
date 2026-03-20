@@ -11,6 +11,7 @@ export interface HeroSlide {
 
 export interface HeroProps {
   logoSrc: string;
+  page?: string;
   slides?: HeroSlide[]; // for image carousel
   backgroundImage?: string; // legacy single image
   backgroundVideo?: string; // for single looping video
@@ -26,6 +27,7 @@ export function Hero({
   scrollText = "SCROLL TO EXPLORE",
   autoPlayInterval = 5000,
   logoSrc,
+  page,
   className,
 }: HeroProps) {
   const computedSlides: HeroSlide[] =
@@ -160,13 +162,15 @@ export function Hero({
           priority
           className={`object-contain drop-shadow-[0_10px_35px_rgba(0,0,0,0.5)] ${className || "w-48 md:w-64"}`}
         />
-        <Image
-          src="/images/ui/atsattya.svg"
-          alt="@Sattya"
-          width={120}
-          height={30}
-          className="w-auto h-6 md:h-8 object-contain translate-x-10"
-        />
+        {page !== "spotted" && (
+          <Image
+            src="/images/ui/atsattya.svg"
+            alt="@Sattya"
+            width={120}
+            height={30}
+            className="w-auto h-4 md:h-6 object-contain translate-x-10"
+          />
+        )}
       </div>
 
       {/* Bottom Scroll Indicator */}
