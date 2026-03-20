@@ -43,7 +43,7 @@ export default function BookingPage() {
             {/* Footer note */}
             <div className="px-6 sm:px-10 lg:px-16 py-16 max-w-5xl mx-auto">
                 <p className="caption text-black/30 text-center">
-                    All stays include access to common areas, coworking, and the Art Cafe.
+                    All stays include access to common areas.
                     <br />
                     For group bookings or extended stays, contact us directly.
                 </p>
