@@ -21,6 +21,7 @@ export const stayImageGridConfig: ImageGridProps = {
             image: "/images/stay/img2.png",
             alt: "Sattya Residence",
             label: "Sattya\nResidence",
+            href: "/stay/sattya-residence",
             hoverText: "A quiet, private one-bedroom apartment on the 3rd floor of Sattya. AC, dedicated workspace, full kitchen, and strong Wi-Fi. Privacy with easy access to the community below.",
             rowSpan: 2,
         },

@@ -129,27 +129,6 @@ export default function PropertyBooking({
 
     return (
         <div className="min-h-screen bg-white">
-
-            {/* Image gallery */}
-            {/* {images.length > 0 && (
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-1 h-[50vh] md:h-[60vh]">
-                    <div className="col-span-2 md:col-span-2 row-span-2 relative">
-                        <Image
-                            src={images[0]}
-                            alt={name}
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
-                    {images.slice(1, 3).map((img, i) => (
-                        <div key={i} className="relative">
-                            <Image src={img} alt={`${name} ${i + 2}`} fill className="object-cover" />
-                        </div>
-                    ))}
-                </div>
-            )} */}
-            {/* Hero header */}
             <div className="relative">
                 {/* Background image */}
                 <div className="absolute inset-0 bg-[url('/images/stay/img1.png')] bg-cover bg-center"></div>
@@ -207,56 +186,6 @@ export default function PropertyBooking({
 
                     {/* LEFT — property details */}
                     <div className="flex flex-col gap-12">
-
-                        {/* Header */}
-                        {/* <div className="flex flex-col gap-3 pb-8 border-b border-black/10">
-                            <p className="caption uppercase text-stay tracking-widest">
-                                Sattya Appartment· {location}
-                            </p>
-                            <h1
-                                className="uppercase leading-none text-[clamp(2rem,5vw,4rem)]"
-                                style={{ fontFamily: "var(--font-display)", color: "#A7937A" }}
-                            >
-                                {name}
-                            </h1>
-                            {tagline && (
-                                <p
-                                    className="text-black lowercase text-[clamp(1.2rem,2.5vw,2rem)] leading-none"
-                                    style={{ fontFamily: "var(--font-scratchy)" }}
-                                >
-                                    {tagline}
-                                </p>
-                            )} */}
-
-                        {/* Quick stats */}
-                        {/* <div className="flex flex-wrap gap-6 mt-4">
-                                {maxGuests && (
-                                    <div className="flex items-center gap-2">
-                                        <span className="caption text-black/40 uppercase">Guests</span>
-                                        <span className="p-bold">{maxGuests}</span>
-                                    </div>
-                                )}
-                                {bedrooms && (
-                                    <div className="flex items-center gap-2">
-                                        <span className="caption text-black/40 uppercase">Bedrooms</span>
-                                        <span className="p-bold">{bedrooms}</span>
-                                    </div>
-                                )}
-                                {bathrooms && (
-                                    <div className="flex items-center gap-2">
-                                        <span className="caption text-black/40 uppercase">Bathrooms</span>
-                                        <span className="p-bold">{bathrooms}</span>
-                                    </div>
-                                )}
-                                {size && (
-                                    <div className="flex items-center gap-2">
-                                        <span className="caption text-black/40 uppercase">Size</span>
-                                        <span className="p-bold">{size}</span>
-                                    </div>
-                                )}
-                            </div>
-                        </div> */}
-
                         {/* Description */}
                         {description && (
                             <div className="flex flex-col gap-4 pb-8 border-b border-black/10">

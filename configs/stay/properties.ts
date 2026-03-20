@@ -261,9 +261,13 @@ Longer stays are very welcome. The intention is simply to support a good shared 
         bedrooms: 1,
         bathrooms: 1,
         images: [
-            "/images/stay/residence-1.jpg",
-            "/images/stay/residence-2.jpg",
-            "/images/stay/residence-3.jpg",
+            "/images/stay/img2.png",
+            "/images/stay/img1.png",
+            "/images/stay/img3.png",
+            "/images/stay/img4.png",
+            "/images/stay/img5.png",
+            "/images/stay/img6.png",
+            "/images/stay/img7.png",
         ],
         rooms: [
             {

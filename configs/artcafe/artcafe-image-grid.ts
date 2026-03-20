@@ -1,6 +1,6 @@
 // configs/artcafe-image-grid.ts
 
-import {ImageGridProps} from "../../components/ui/ImageGrid";
+import { ImageGridProps } from "../../components/ui/ImageGrid";
 
 
 export const artcafeImageGridConfig: ImageGridProps = {
@@ -42,7 +42,6 @@ export const artcafeImageGridConfig: ImageGridProps = {
     ],
     bannerText: "artcafe . SATTYA",
     color: "artcafe",
-    hoverIcon: "/images/artcafe/paintbrush.svg",
     logoSrc: "/images/Spacesartcafe.png",
     // hoverIcon: "/images/artcafe/hover-icon.svg",
     cols: 4,
