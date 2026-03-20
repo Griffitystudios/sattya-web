@@ -6,7 +6,7 @@ export const coworkSessionsConfig: SessionsAccordionProps = {
   heroLine2: "& Pricing",
   subtext:
     "Cowork is designed to be flexible. Work for a short stretch, stay for the day, or come back regularly. Choose what fits your schedule.",
-  footnote: "Details on passes, rentals, and current rates are available here.",
+  footnote: "",
   starSrc: "/images/star.png",
   accentColor: "text-cowork",
   accentBg: "bg-cowork",
