@@ -3,9 +3,9 @@ import HomeSearch from "../../../components/sections/stay/homeSearch";
 import StayImageGrid from "../../../components/sections/stay/imageGrid";
 import StaybodySection from "../../../components/sections/stay/stayBodysection";
 import StaybodySection2 from "../../../components/sections/stay/stayBodysection2";
+import StayBookingCTA from "../../../components/sections/stay/StayBookingCTA";
 import StayOptionsSection from "../../../components/sections/stay/stayOptions";
 import StaySection from "../../../components/sections/stay/staySection";
-import BookingCTA from "../../../components/ui/BookingCTA";
 import { Hero } from "../../../components/ui/Hero";
 import SessionsAccordion from "../../../components/ui/SessionsAccordion";
 import { apartmentInfoConfig } from "../../../configs/stay/accordion";
@@ -22,15 +22,15 @@ export default function StayPage() {
     <div>
       <Hero {...stayHeroConfig} />
 
-      <HomeSearch />
 
       <StaySection />
+      <HomeSearch />
       <StaybodySection />
       <StayImageGrid {...stayImageGridConfig} />
       {/* <StaybodySection2 /> */}
       {/* <StayOptionsSection /> */}
       <SessionsAccordion {...apartmentInfoConfig} />
-      <BookingCTA {...stayBookingConfig} />
+      <StayBookingCTA {...stayBookingConfig} />
     </div>
   );
 }

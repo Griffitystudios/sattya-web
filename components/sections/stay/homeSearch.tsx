@@ -25,21 +25,16 @@ export default function HomeSearch() {
     }, []);
 
     return (
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-20">
+        <div className="max-w-7xl mx-auto mt-30  ">
             {/* Heading */}
             <div className="w-fit mb-10 mx-auto">
-                <h2 className="h1 text-stay uppercase leading-none"> Book your {" "}
-                    <span className="relative inline-block">
-                        accomodation
-                        <span className="h1-alt text-black absolute lowercase -bottom-3 lg:-bottom-5 -right-2">
-                            at sattya
-                        </span>
-                    </span>
+                <h2 className="text-h2 font-light text-stay uppercase leading-none">
+                    Book your Accomodation at Sattya
                 </h2>
             </div>
 
             {/* Widget area */}
-            <div className="relative min-h-[48px]">
+            <div className="relative min-h-[48px] z-30">
                 {!scriptLoaded && <BookingWidgetSkeleton />}
                 <div className={scriptLoaded ? "block" : "hidden"}>
                     <div

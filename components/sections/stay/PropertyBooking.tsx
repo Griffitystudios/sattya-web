@@ -8,6 +8,7 @@ import ImageGallery from "../../ui/ImageGallery";
 import { IconKey, icons } from "../../../configs/icons";
 import gsap from "gsap";
 import { BookingType } from "../../../configs/stay/stayOptions";
+import Link from "next/link";
 
 interface Room {
     name: string;
@@ -17,7 +18,14 @@ interface Room {
     bathroom: string;
     description: string;
 }
-
+export interface RelatedRoom {
+    name: string;
+    badge?: string;
+    size?: string;
+    bed?: string;
+    image: string;
+    href: string;
+}
 interface Amenity {
     icon: IconKey;
     label: string;
@@ -50,6 +58,7 @@ export interface PropertyBookingProps {
     inquireEmail?: string;
     inquireFormHref?: string;
     inquireLabel?: string;
+    relatedRooms?: RelatedRoom[];
 }
 export default function PropertyBooking({
     name,
@@ -71,6 +80,7 @@ export default function PropertyBooking({
     sections = [],
     notes = [],
     goodFor = [],
+    relatedRooms = [],
 }: PropertyBookingProps) {
     const searchParams = useSearchParams();
     const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -135,7 +145,7 @@ export default function PropertyBooking({
         }
     }, [searchParams, iframeSrc]);
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen  ">
             <div className="relative">
                 {/* Background image */}
                 <div className="absolute inset-0 bg-[url('/images/stay/img1.png')] bg-cover bg-center"></div>
@@ -492,6 +502,48 @@ export default function PropertyBooking({
                     </div>
                 </div>
             </div>
+            {/* View other rooms */}
+            {relatedRooms && relatedRooms.length > 0 && (
+                <div className="flex flex-col gap-6 pt-8 border-t mx-auto border-black/10 max-w-7xl">
+                    <p className="p-bold">Other rooms at Sattya</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        {relatedRooms.slice(0, 3).map((room, i) => (
+                            <a
+                                key={i}
+                                href={room.href}
+                                className="group flex flex-col gap-3"
+                            >
+                                {/* Image */}
+                                <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                                    <Image
+                                        src={room.image}
+                                        alt={room.name}
+                                        fill
+                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                        sizes="(max-width: 640px) 100vw, 33vw"
+                                    />
+                                </div>
+
+                                {/* Info */}
+                                <div className="flex flex-col gap-0.5">
+                                    <p className="p-bold text-black">{room.name}</p>
+                                    {room.bed && (
+                                        <p className="caption text-black/50">{room.bed}</p>
+                                    )}
+                                    {room.size && (
+                                        <p className="caption text-black/40">{room.size}</p>
+                                    )}
+                                    {room.badge && (
+                                        <p className="caption text-stay/70 uppercase tracking-widest mt-1">
+                                            {room.badge}
+                                        </p>
+                                    )}
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useScrollAnimation } from "../../../hooks/use-scroll-animation";
+import { useRef, useState, useCallback } from "react";
+import gsap from "gsap";
+import Link from "next/link";
 
-interface floatingItem {
+interface FloatingItem {
   icon: string;
   alt: string;
   position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
@@ -11,9 +13,12 @@ interface floatingItem {
 }
 
 export interface StaySectionProps {
-  floatingItems?: floatingItem[];
+  floatingItems?: FloatingItem[];
   bgColor?: string;
-  className?: string;
+  caption?: string;
+  heading?: string;
+  boldImages?: Record<string, string>;
+  boldLinks?: Record<string, string>;
 }
 
 const positionClasses = {
@@ -25,69 +30,236 @@ const positionClasses = {
 
 export default function StaySection({
   floatingItems = [
-    {
-      icon: "/images/stay/leaves.svg",
-      alt: "Stay Image",
-      position: "top-left",
-      className: "w-30 sm:w-40 md:w-48 lg:w-60 ",
-
-    },
-    {
-      icon: "/images/stay/fruits.svg",
-      alt: "Stay Image",
-      position: "top-right",
-    },
-    {
-      icon: "/images/stay/plant.svg",
-      alt: "Stay Image",
-      position: "bottom-left",
-      className: "w-18 sm:w-24 md:w-30 lg:w-37",
-    },
-    {
-      icon: "/images/stay/flower.svg",
-      alt: "Stay Image",
-      position: "bottom-right",
-      className: "w-30 sm:w-40 md:w-48 lg:w-60 ",
-    },
-
+    { icon: "/images/stay/leaves.svg", alt: "Leaves", position: "top-left", className: "w-24 sm:w-32 md:w-40 lg:w-52 opacity-60" },
+    { icon: "/images/stay/fruits.svg", alt: "Fruits", position: "top-right", className: "w-24 sm:w-32 md:w-40 lg:w-52 opacity-40" },
+    { icon: "/images/stay/plant.svg", alt: "Plant", position: "bottom-left", className: "w-16 sm:w-22 md:w-28 lg:w-36 opacity-60" },
+    { icon: "/images/stay/flower.svg", alt: "Flower", position: "bottom-right", className: "w-24 sm:w-32 md:w-40 lg:w-52 opacity-40" },
   ],
   bgColor = "bg-stay",
+  caption = "A PLACE TO LAND, A SPACE TO BREATHE",
+  heading = `Find home in the warmth of **Marigold**,\nthe peace of **Tulsi**, or the hope of **Aasha**,\nenjoy the flow of ideas in our collective residence,\nand let our history become a part of yours.`,
+  boldImages = {
+    Marigold: "/images/stay/img4.png",
+    Tulsi: "/images/stay/img5.png",
+    Aasha: "/images/stay/img7.png",
+  },
+  boldLinks = {
+    Marigold: "/stay/large-room",
+    Tulsi: "/stay/mid-size-room",
+    Aasha: "/stay/small-room",
+  },
 }: StaySectionProps) {
-  const { ref } = useScrollAnimation();
+  const sectionRef = useRef<HTMLElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const [activeWord, setActiveWord] = useState<string | null>(null);
+  const [activeImage, setActiveImage] = useState<string | null>(null);
+  const [imagePos, setImagePos] = useState({ x: 0, y: 0 });
+  const isTouchDevice = useRef(false);
+  const hideTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const showImage = useCallback((word: string, el: HTMLElement) => {
+    const img = boldImages[word];
+    if (!img) return;
+
+    if (hideTimeout.current) clearTimeout(hideTimeout.current);
+
+    const rect = el.getBoundingClientRect();
+    const sectionRect = sectionRef.current?.getBoundingClientRect();
+    if (!sectionRect) return;
+
+    const x = rect.left - sectionRect.left + rect.width / 2;
+    const y = rect.top - sectionRect.top + rect.height / 2;
+
+    setActiveWord(word);
+    setActiveImage(img);
+    setImagePos({ x, y });
+
+    setTimeout(() => {
+      if (!imageRef.current) return;
+      gsap.fromTo(
+        imageRef.current,
+        { opacity: 0, scale: 0.92, y: 8 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "power2.out" }
+      );
+    }, 10);
+
+
+    // Animate underline
+    const underline = el.querySelector(".underline-bar") as HTMLElement;
+    if (underline) {
+      gsap.fromTo(
+        underline,
+        { scaleX: 0, transformOrigin: "left" },
+        { scaleX: 1, duration: 0.5, ease: "power2.out" }
+      );
+    }
+  }, [boldImages]);
+
+  const hideImage = useCallback((el?: HTMLElement) => {
+    if (!imageRef.current) {
+      setActiveWord(null);
+      setActiveImage(null);
+      return;
+    }
+
+    // Animate underline out
+    if (el) {
+      const underline = el.querySelector(".underline-bar") as HTMLElement;
+      if (underline) {
+        gsap.to(underline, {
+          scaleX: 0,
+          transformOrigin: "right",
+          duration: 0.5,
+          ease: "power2.in",
+        });
+      }
+    }
+
+    gsap.to(imageRef.current, {
+      opacity: 0,
+      scale: 0.92,
+      y: 8,
+      duration: 0.3,
+      ease: "power2.in",
+      onComplete: () => {
+        setActiveWord(null);
+        setActiveImage(null);
+      },
+    });
+  }, []);
+
+  const renderHeading = (text: string) => {
+    return text.split("\n").map((line, lineIdx) => {
+      const parts = line.split(/(\*\*[^*]+\*\*)/g);
+      return (
+        <span key={lineIdx} className="block">
+          {parts.map((part, i) => {
+            if (part.startsWith("**") && part.endsWith("**")) {
+              const word = part.slice(2, -2);
+              const hasImage = !!boldImages[word];
+              const isActive = activeWord === word;
+              const isOtherActive = activeWord !== null && activeWord !== word;
+              const link = boldLinks?.[word];
+              return (
+                <strong
+                  key={i}
+                  className="relative inline-block font-bold cursor-pointer"
+                  style={{
+                    color: isOtherActive ? "rgba(255,255,255,0.4)" : "white",
+                    transition: "color 0.5s ease",
+                    zIndex: isActive ? 20 : isOtherActive ? 1 : "auto",
+                    position: "relative",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isTouchDevice.current && hasImage)
+                      showImage(word, e.currentTarget);
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isTouchDevice.current)
+                      hideImage(e.currentTarget);
+                  }}
+                  onTouchStart={(e) => {
+                    isTouchDevice.current = true;
+                    if (hasImage) showImage(word, e.currentTarget);
+                    if (hideTimeout.current) clearTimeout(hideTimeout.current);
+                    hideTimeout.current = setTimeout(() => hideImage(e.currentTarget), 1500);
+                  }}
+                >
+                  {link ? (
+                    <Link href={link} className="hover:opacity-80 transition-opacity">
+                      {word}
+                    </Link>
+                  ) : (
+                    word
+                  )}
+                  {hasImage && (
+                    <span
+                      className="underline-bar absolute bottom-0 left-0 right-0 h-[2px] bg-white block"
+                      style={{ transform: "scaleX(0)", transformOrigin: "left" }}
+                    />
+                  )}
+                </strong>
+              );
+            }
+
+            // Normal text — fades when a word is active
+            return (
+              <span
+                key={i}
+                style={{
+                  color: activeWord !== null ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,1)",
+                  transition: "color 0.5s ease",
+                  position: "relative",
+                  zIndex: 1,
+                }}
+              >
+                {part}
+              </span>
+            );
+          })}
+        </span>
+      );
+    });
+  };
 
   return (
     <section
-      ref={ref}
-      className={`${bgColor} h-[calc(100vh-10rem)] sm:h-180 py-12 md:py-18 lg:py-28 px- sm:px-6 lg:px-8 relative overflow-hidden `}
+      ref={sectionRef}
+      className={`${bgColor} h-screen max-h-300 relative overflow-hidden flex items-center justify-center`}
     >
       {/* Decorative corner items */}
-      {floatingItems.map((featured, index) => (
+      {floatingItems.map((item, index) => (
         <div
           key={index}
-          className={`absolute hidden sm:block pointer-events-none 
-              
-              ${positionClasses[featured.position]} 
-              ${featured.className ? featured.className : "w-20 sm:w-28 md:w-36 lg:w-44"}`}
+          className={`absolute pointer-events-none ${positionClasses[item.position]} ${item.className ?? "w-24 opacity-50"}`}
         >
-          <Image
-            src={featured.icon}
-            alt={featured.alt}
-            width={192}
-            height={192}
-            className="w-full h-auto object-contain"
-          />
+          <Image src={item.icon} alt={item.alt} width={200} height={200} className="w-full h-auto object-contain" />
         </div>
       ))}
 
-      <div className="max-w-7xl mx-auto flex justify-center items-center h-full relative z-10 px-4">
-
-        <p className="p text-center text-white mt-4  ">
-          There are different options to explore if you want to stay at Sattya, with
-          mid-term and longer-term stays in Kathmandu.<br /> These stays are suited to people
-          who want a comfortable base,  access to shared spaces,<br /> and proximity to an active
-          creative community.
+      {/* Hover image — sits behind text at word position */}
+      {activeImage && (
+        <div
+          ref={imageRef}
+          className="absolute z-[5] pointer-events-none"
+          style={{
+            left: `${imagePos.x}px`,
+            top: `${imagePos.y}px`,
+            transform: "translate(-20%, -50%)",
+            opacity: 0, // ← hidden on mount, GSAP animates it in
+          }}
+        >
+          <div className="relative w-64 sm:w-80 min-h-30 md:min-h-40 lg:w-110 lg:min-h-64 overflow-hidden shadow-2xl ">
+            <Image
+              src={activeImage}
+              alt="Room preview"
+              fill
+              className="object-cover"
+              sizes="400px"
+            />
+          </div>
+        </div>
+      )}
+      {/* Center content — z-10 so text is above image */}
+      <div className="relative  flex flex-col items-center text-center px-6 sm:px-12 lg:px-24 py-20 mx-auto">
+        {/* Caption */}
+        <p
+          className="font-bold mb-4 sm:mb-6 uppercase tracking-[0.2em] text-[clamp(0.6rem,1vw,0.75rem)]"
+          style={{
+            color: activeWord !== null ? "rgba(255,255,255,0.4" : "rgba(255,255,255,1)",
+            transition: "color 0.5s ease",
+          }}
+        >
+          {caption}
         </p>
 
+        {/* Heading */}
+        <p
+          className="font-extralight text-[clamp(1.8rem,4vw,4.5rem)] leading-tight"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          {renderHeading(heading)}
+        </p>
       </div>
     </section>
   );
