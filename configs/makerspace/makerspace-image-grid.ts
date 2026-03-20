@@ -1,6 +1,6 @@
 // configs/makerspace-image-grid.ts
 
-import {ImageGridProps} from "../../components/ui/ImageGrid";
+import { ImageGridProps } from "../../components/ui/ImageGrid";
 
 
 export const makersImageGridConfig: ImageGridProps = {
@@ -32,7 +32,6 @@ export const makersImageGridConfig: ImageGridProps = {
     ],
     bannerText: "MAKERSPACE . SATTYA",
     color: "makerspace",
-    hoverIcon: "/images/makerspace/bulb.svg",
     logoSrc: "/images/SpacesMakerspace.png",
     // hoverIcon: "/images/makerspace/hover-icon.svg",
 
