@@ -35,7 +35,7 @@ export default function Footer({
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="text-white mt-18 lg:mt-40">
+    <footer className="text-white mt-20 lg:mt-40">
       {/* Split hero — top half white, bottom half black, logo straddling */}
       <div className="relative bg-black">
         {/* Remove the white top half */}
