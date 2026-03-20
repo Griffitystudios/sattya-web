@@ -1,47 +1,46 @@
-// configs/artcafe-image-grid.ts
+// configs/cowork-image-grid.ts
 
-import {ImageGridProps} from "../../components/ui/ImageGrid";
+import { ImageGridProps } from "../../components/ui/ImageGrid";
 
 
 export const coworkImageGridConfig: ImageGridProps = {
     items: [
         {
-            image: "/images/artcafe/img1.png",
-            alt: "Join workshops session",
-            label: "Build &\nWoodworking",
-            hoverText: "Work on furniture, models,\nsmall structures, or repair\nprojects using shared tools.",
+            image: "/images/cowork/img3.png",
+            alt: "Meeting Rooms",
+            label: "Meeting Rooms",
+            hoverText: "Book private meeting rooms for focused discussions, client presentations, or team collaborations.",
             colSpan: 2
         },
         {
-            image: "/images/artcafe/party.png",
-            alt: "Repair and electronics workspace",
-            label: "Repair &\nElectronics",
-            hoverText: "Fix household items, experiment with basic electronics, and try repairing instead of replacing.",
+            image: "/images/cowork/img1.png",
+            alt: "Office Space",
+            label: "Office Space",
+            hoverText: "Rent dedicated office spaces for teams of 2–6 people, offering privacy and professional amenities.",
             rowSpan: 2
         },
         {
-            image: "/images/artcafe/crafting.png",
-            alt: "Crafting and upcycling",
-            label: "Crafting &\nUpcycling",
-            hoverText: "Sew, paint, restore, and reuse materials you already have across textiles, objects, and mixed media.",
+            image: "/images/cowork/img2.png",
+            alt: "Desk Space",
+            label: "Desk Space",
+            hoverText: "Shared Desk space for daily co-working with high-speed internet and comfortable seating.",
         },
         {
-            image: "/images/artcafe/img5.png",
-            alt: "Join workshops",
-            label: "Use \nshared tools",
-            hoverText: "Access communal tools and worktables without needing to own everything yourself.",
+            image: "/images/cowork/img4.png",
+            alt: "Call Booths",
+            label: "Call Booths",
+            hoverText: "Soundproof booths for private phone calls, video meetings, or focused work sessions.",
             colSpan: 2
         },
         {
-            image: "/images/artcafe/img5.png",
-            alt: "Join workshops",
-            label: "Use \nshared tools",
-            hoverText: "Access communal tools and worktables without needing to own everything yourself.",
+            image: "/images/cowork/img5.png",
+            alt: "Refreshment Breaks",
+            label: "Refreshment Breaks",
+            hoverText: "A focused work area connected to the rest of Sattya. Take breaks into events, the cafe, or whatever’s happening elsewhere in the building.",
         },
     ],
     bannerText: "cowork . SATTYA",
     color: "cowork",
-    hoverIcon: "/images/makerspace/bulb.svg",
     logoSrc: "/images/cologob.png",
 
 

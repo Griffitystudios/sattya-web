@@ -16,6 +16,7 @@ import { artVibeConfig } from "../../../configs/artcafe/artcafe-vibe";
 import { artCafeEventsConfig } from "../../../configs/artcafe/artcafe-events";
 import InfoSection from "../../../components/ui/InfoSection";
 import { artcafeInfoConfig } from "../../../configs/artcafe/artcafe-info";
+import ImageGridAlt from "../../../components/ui/ImageGridAlt";
 
 export default function CoWork() {
   return (
@@ -24,7 +25,8 @@ export default function CoWork() {
       <VibeGrid {...artVibeConfig} />
       <ArtcafeSection />
       <InfoSection {...artcafeInfoConfig} />
-      <ImageGrid {...artcafeImageGridConfig} />
+      {/* <ImageGrid {...artcafeImageGridConfig} /> */}
+      <ImageGridAlt {...artcafeImageGridConfig} />
       <SessionsAccordion {...artcafeSessionsConfig} />
       <GallerySlider {...artcafeGallerySliderConfig} />
       <EventsSection {...artCafeEventsConfig} />

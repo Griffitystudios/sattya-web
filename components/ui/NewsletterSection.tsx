@@ -84,6 +84,8 @@ export default function NewsletterSection({
 
                         <a
                             href="https://spottedbysattya.substack.com/subscribe"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="bg-black w-full text-white px-6 py-3 p-bold text-center hover:bg-black/80 transition-colors shrink-0 disabled:opacity-50"
                         >
                             Subscribe
