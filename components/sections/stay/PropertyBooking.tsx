@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import ImageGallery from "../../ui/ImageGallery";
 import { IconKey, icons } from "../../../configs/icons";
+import gsap from "gsap";
 
 interface Room {
     name: string;
@@ -67,6 +68,44 @@ export default function PropertyBooking({
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [lightboxIndex, setLightboxIndex] = useState(0);
+    const [showAllSections, setShowAllSections] = useState(false);
+    const modalRef = useRef<HTMLDivElement>(null);
+    const modalBackdropRef = useRef<HTMLDivElement>(null);
+
+    const openModal = () => {
+        setShowAllSections(true);
+        // Animate in after render
+        requestAnimationFrame(() => {
+            if (!modalRef.current || !modalBackdropRef.current) return;
+            gsap.fromTo(
+                modalBackdropRef.current,
+                { opacity: 0 },
+                { opacity: 1, duration: 0.3, ease: "power2.out" }
+            );
+            gsap.fromTo(
+                modalRef.current,
+                { opacity: 0, y: 40, scale: 0.96 },
+                { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "power3.out" }
+            );
+        });
+    };
+
+    const closeModal = () => {
+        if (!modalRef.current || !modalBackdropRef.current) return;
+        gsap.to(modalRef.current, {
+            opacity: 0,
+            y: 30,
+            scale: 0.97,
+            duration: 0.3,
+            ease: "power2.in",
+        });
+        gsap.to(modalBackdropRef.current, {
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.in",
+            onComplete: () => setShowAllSections(false),
+        });
+    };
 
     useEffect(() => {
         const iframe = iframeRef.current;
@@ -332,13 +371,57 @@ export default function PropertyBooking({
                         )}
                         {/* Detailed sections */}
                         {sections && sections.length > 0 && (
-                            <div className="flex flex-col gap-10 pb-8 border-b border-black/10">
-                                {sections.map((section, i) => (
-                                    <div key={i} className="flex flex-col gap-3">
-                                        <h2 className="p-bold uppercase">{section.title}</h2>
-                                        <p className="p text-black/70 whitespace-pre-line">{section.content}</p>
+                            <div className="flex flex-col gap-4 pb-8 border-b border-black/10">
+                                {/* First section — always visible, truncated */}
+                                <div className="relative">
+                                    <p className="p text-black/70 whitespace-pre-line line-clamp-6">
+                                        {sections[0].content}
+                                    </p>
+                                    {/* Fade gradient over truncated text */}
+                                    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+                                </div>
+
+                                <button
+                                    onClick={openModal}
+                                    className="w-fit flex items-center gap-2 p-bold underline underline-offset-4 hover:text-black/60 transition-colors"
+                                >
+                                    Show more
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+
+                                {/* Modal — all sections */}
+                                {showAllSections && (
+                                    <div
+                                        ref={modalBackdropRef}
+                                        className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4 md:p-8"
+                                        onClick={() => closeModal()}
+                                    >
+                                        <div
+                                            ref={modalRef}
+                                            className="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl p-8 flex flex-col gap-6"
+                                            onClick={(e) => e.stopPropagation()}
+                                        >
+                                            {/* Close */}
+                                            <div className="flex items-center justify-between shrink-0">
+                                                <h2 className="p-bold uppercase">About this space</h2>
+                                                <button
+                                                    onClick={() => closeModal()}
+                                                    className="text-black/50 hover:text-black transition-colors text-xl leading-none"
+                                                >
+                                                    ✕
+                                                </button>
+                                            </div>
+                                            {sections.map((section, i) => (
+                                                <div key={i} className="flex flex-col gap-2">
+                                                    {section.title && <h3 className="p-bold">{section.title}</h3>}
+                                                    <p className="p text-black/70 whitespace-pre-line">{section.content}</p>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                ))}
+                                )}
                             </div>
                         )}
 
