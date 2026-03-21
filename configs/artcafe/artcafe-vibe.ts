@@ -6,7 +6,7 @@ export const artVibeConfig: VibeGridProps = {
   bgColor: "bg-artcafe",
   textColor: "text-white",
   textOpacity: "text-white/90",
-  widthClass: "w-8 sm:w-10 md:w-16",
+  widthClass: "w-8 md:w-12",
   items: [
     {
       icon: "/images/artcafe/diy.svg",
