@@ -40,16 +40,14 @@ function HoverOverlay({
 }) {
   return (
     <div
-      className={`absolute inset-0 transition-opacity duration-500 z-20 flex items-center justify-center overflow-hidden bg-black/50 ${
-        active ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-      }`}
+      className={`absolute inset-0 transition-opacity duration-500 z-20 flex items-center justify-center overflow-hidden bg-black/50 ${active ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+        }`}
     >
       <svg
-        className={`absolute inset-3.75 w-[calc(100%-30px)] h-[calc(100%-30px)] pointer-events-none transition-all duration-700 ease-out transform ${
-          active
+        className={`absolute inset-3.75 w-[calc(100%-30px)] h-[calc(100%-30px)] pointer-events-none transition-all duration-700 ease-out transform ${active
             ? "scale-100 opacity-100"
             : "scale-105 opacity-0 group-hover:scale-100 group-hover:opacity-100"
-        }`}
+          }`}
         preserveAspectRatio="none"
         viewBox="0 0 100 100"
       >
@@ -70,11 +68,10 @@ function HoverOverlay({
       </svg>
 
       <div
-        className={`px-8 z-30 relative flex flex-col items-center justify-center gap-6 w-full transition-all duration-700 delay-100 ease-out transform ${
-          active
+        className={`px-8 z-30 relative flex flex-col items-center justify-center gap-6 w-full transition-all duration-700 delay-100 ease-out transform ${active
             ? "translate-y-0 opacity-100"
             : "translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
-        }`}
+          }`}
       >
         <p className="caption text-white text-center font-light whitespace-pre-line leading-relaxed max-w-[85%]">
           {hoverText}
@@ -167,9 +164,8 @@ export default function ImageGrid({
                 src={item.image}
                 alt={item.alt}
                 fill
-                className={`object-cover transition-transform duration-500 ${
-                  isActive ? "scale-105" : "group-hover:scale-105"
-                }`}
+                className={`object-cover transition-transform duration-500 ${isActive ? "scale-105" : "group-hover:scale-105"
+                  }`}
                 sizes={[
                   "(max-width: 640px) 100vw",
                   `${Math.round(100 / cols)}vw`,
@@ -177,17 +173,15 @@ export default function ImageGrid({
               />
 
               <div
-                className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
-                  isActive ? "opacity-0" : "group-hover:opacity-0"
-                }`}
+                className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${isActive ? "opacity-0" : "group-hover:opacity-0"
+                  }`}
               />
 
               <div
-                className={`absolute inset-0 flex items-center justify-center p-4 sm:p-6 transition-opacity duration-300 z-10 ${
-                  isActive ? "opacity-0" : "group-hover:opacity-0"
-                }`}
+                className={`absolute inset-0 flex items-center justify-center p-4 sm:p-6 transition-opacity duration-300 z-10 ${isActive ? "opacity-0" : "group-hover:opacity-0"
+                  }`}
               >
-                <h2 className="text-h3-off text-h3-off-line-height font-offset lg:text-h2-off lg:text-h2-off-line-height text-white uppercase text-center whitespace-pre-line">
+                <h2 className="text-h3-off text-h3-off-line-height font-display lg:text-h2-off lg:text-h2-off-line-height text-white uppercase text-center whitespace-pre-line">
                   {item.label}
                 </h2>
               </div>

@@ -15,6 +15,52 @@ const sharedAmenities = [
     { icon: "makerspace", label: "Makerspace next door" },
     { icon: "lock", label: "Secure building" },
 ];
+// In properties.ts — add to each property
+
+const allRelatedRooms = [
+    {
+        name: "Marigold Room",
+        badge: "Single Room",
+        size: "152 sq ft",
+        bed: "Queen bed",
+        image: "/images/stay/img4.png",
+        href: "/stay/large-room",
+    },
+    {
+        name: "Tulsi Room",
+        badge: "Single Room",
+        size: "110 sq ft",
+        bed: "Queen bed",
+        image: "/images/stay/img5.png",
+        href: "/stay/mid-size-room",
+    },
+    {
+        name: "Aasha Room",
+        badge: "Single Room",
+        size: "90 sq ft",
+        bed: "Double bed",
+        image: "/images/stay/img7.png",
+        href: "/stay/small-room",
+    },
+    {
+        name: "Whole Apartment",
+        badge: "Whole Apartment",
+        size: "116 sq m",
+        bed: "3 bedrooms",
+        image: "/images/stay/img1.png",
+        href: "/stay/sattya-apartment",
+    },
+    {
+        name: "Sattya Residence",
+        badge: "Private",
+        size: "TBC",
+        bed: "Queen bed",
+        image: "/images/stay/img2.png",
+        href: "/stay/sattya-residence",
+    },
+];
+
+
 const allRooms = [
     {
         name: "Marigold Room",
@@ -115,6 +161,7 @@ Guests share generous common spaces, including a cozy living room, large dining 
         ],
         notes: sharedNotes,
         goodFor: sharedGoodFor,
+        relatedRooms: allRelatedRooms.filter(r => r.href !== "/stay/large-room"),
     },
 
     "mid-size-room": {
@@ -150,6 +197,7 @@ Guests share generous common spaces, including a cozy living room, large dining 
         ],
         notes: sharedNotes,
         goodFor: sharedGoodFor,
+        relatedRooms: allRelatedRooms.filter(r => r.href !== "/stay/mid-size-room"),
     },
 
     "small-room": {
@@ -184,6 +232,7 @@ Guests share generous common spaces, including a cozy living room, large dining 
         ],
         notes: sharedNotes,
         goodFor: sharedGoodFor,
+        relatedRooms: allRelatedRooms.filter(r => r.href !== "/stay/small-room"),
     },
 
     "sattya-apartment": {
@@ -252,6 +301,7 @@ Longer stays are very welcome. The intention is simply to support a good shared 
             "Groups who want their own space while staying loosely connected to creative community.",
             "Anyone looking for something that feels more like a home than a hotel.",
         ],
+        relatedRooms: allRelatedRooms.filter(r => r.href !== "/stay/sattya-apartment"),
     },
     "sattya-residence": {
         name: "Sattya Residence",
@@ -344,6 +394,7 @@ You're free to come and go as you like. The Sattya team is right downstairs if a
             "Solo travelers or couples looking for a quiet, well-equipped base in Kathmandu.",
             "People who want privacy but enjoy having a creative community nearby when they want it."
         ],
+        relatedRooms: allRelatedRooms.filter(r => r.href !== "/stay/sattya-residence"),
     },
     "residency-room": {
         badge: "Work-Trade",
@@ -418,5 +469,6 @@ If you're interested, tell us a bit about yourself, what you do, and what you'd 
             "Longer stays on a budget with meaningful exchange.",
             "Anyone who wants to plug into a creative community while they're in Kathmandu.",
         ],
+        relatedRooms: allRelatedRooms.filter(r => r.href !== "/stay/residency-room"),
     },
 };

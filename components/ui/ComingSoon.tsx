@@ -20,7 +20,7 @@ export default function ComingSoon({
   accentColor = "#6b7c5c",
 }: ComingSoonProps) {
   return (
-    <section className="w-full  text-hero-xl font-display flex flex-col items-center justify-center  px-5 sm:px-20 pt-34 ">
+    <section className="w-full  text-hero-xl font-display flex flex-col items-center justify-center  px-5 sm:px-20 pt-34 mb-15">
 
       {/* Big heading */}
       <div className="text-center mb-16 text-hero-xl uppercase">
@@ -40,11 +40,11 @@ export default function ComingSoon({
           <h1
             className={` ml-1 rotate-7 translate-y-3 text-${accentColor} `}
           >
-          !!
+            !!
           </h1>
 
         </div>
-        
+
       </div>
 
       {/* Body text */}

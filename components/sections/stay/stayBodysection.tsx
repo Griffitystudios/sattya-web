@@ -17,7 +17,7 @@ export default function StaybodySection({
 
 }: StaybodySectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const headingRef = useRef<HTMLDivElement>(null);
+  // const headingRef = useRef<HTMLDivElement>(null);
   const col1Ref = useRef<HTMLDivElement>(null);
   const col2Ref = useRef<HTMLDivElement>(null);
   const photo1WrapRef = useRef<HTMLDivElement>(null);
@@ -35,16 +35,16 @@ export default function StaybodySection({
 
     const ctx = gsap.context(() => {
       // Heading word split
-      const headingEl = headingRef.current;
-      if (headingEl) {
-        const elems = headingEl.querySelectorAll(".anim-word");
-        const split = new SplitText(elems, { type: "words" });
-        gsap.set(split.words, { y: 50, opacity: 0 });
-        gsap.to(split.words, {
-          y: 0, opacity: 1, duration: 1, ease: "power3.out", stagger: 0.08,
-          scrollTrigger: { trigger: headingEl, start: "top 80%", once: true },
-        });
-      }
+      // const headingEl = headingRef.current;
+      // if (headingEl) {
+      //   const elems = headingEl.querySelectorAll(".anim-word");
+      //   const split = new SplitText(elems, { type: "words" });
+      //   gsap.set(split.words, { y: 50, opacity: 0 });
+      //   gsap.to(split.words, {
+      //     y: 0, opacity: 1, duration: 1, ease: "power3.out", stagger: 0.08,
+      //     scrollTrigger: { trigger: headingEl, start: "top 80%", once: true },
+      //   });
+      // }
 
       // Left column blocks
       if (col1Ref.current) {
@@ -130,26 +130,26 @@ export default function StaybodySection({
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden px-4 sm:px-6 lg:px-8 mb-40 "
+      className="relative  px-4 sm:px-6 lg:px-8 mb-50 mt-30 "
 
     >
       <div className="relative z-10 max-w-7xl mx-auto">
 
         {/* ── HEADING ── */}
-        <div ref={headingRef} className="my-20 lg:my-25 w-full flex flex-col items-center">
-          <div>
-            <h2 className="uppercase leading-none" style={{ fontFamily: "var(--font-display)" }}>
+        {/* <div ref={headingRef} className="my-20 lg:my-25 w-full flex flex-col items-center">
+          <div> */}
+        {/* <h2 className="uppercase leading-none" style={{ fontFamily: "var(--font-display)" }}> */}
 
-              {/* Line 1 — A PLACE */}
-              <div
+        {/* Line 1 — A PLACE */}
+        {/* <div
                 className="text-[clamp(3rem,6vw,5rem)] translate-x-4 md:-translate-x-10 lg:-translate-x-15 xl:-translate-x-20 leading-10 md:leading-15 lg:leading-12 xl:leading-10"
                 style={{ color: "#A7937A" }}
               >
                 A PLACE
-              </div>
+              </div> */}
 
-              {/* Line 2 — TO LAND indented + at sattya inline */}
-              <div
+        {/* Line 2 — TO LAND indented + at sattya inline */}
+        {/* <div
                 className="flex items-baseline gap-4"
                 style={{ marginLeft: "clamp(2rem,10vw,9rem)" }}
               >
@@ -166,10 +166,15 @@ export default function StaybodySection({
 
             </h2>
           </div>
-        </div>
+        </div> */}
 
         {/* ── BODY ROW ── */}
-
+        {/* <p className="h3 text-center text-black my-30  ">
+          There are different options to explore if you want to stay at Sattya, with
+          mid-term and longer-term stays in Kathmandu. These stays are suited to people
+          who want a comfortable base,  access to shared spaces, and proximity to an active
+          creative community.
+        </p> */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 flex-row-reverse lg:gap-20 items-center">
 
           {/* LEFT */}
