@@ -12,7 +12,7 @@ export default function BookingPage() {
             }}
         >
             {/* Hero */}
-            <div className="relative h-[40vh] min-h-[300px]">
+            <div className="relative h-[40vh] min-h-[300px] pt-15">
                 <div className="absolute inset-0 bg-[url('/images/stay/img1.png')] bg-cover bg-center" />
                 <div className="absolute inset-0 bg-black/60" />
                 <div className="relative h-full flex items-center text-white px-6 sm:px-10 lg:px-16">

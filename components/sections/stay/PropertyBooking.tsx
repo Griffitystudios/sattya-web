@@ -504,7 +504,7 @@ export default function PropertyBooking({
             </div>
             {/* View other rooms */}
             {relatedRooms && relatedRooms.length > 0 && (
-                <div className="flex flex-col gap-6 pt-8 border-t mx-auto border-black/10 max-w-7xl">
+                <div className="flex flex-col gap-6 pt-8 px-4 border-t mx-auto border-black/10 max-w-7xl">
                     <p className="p-bold">Other rooms at Sattya</p>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                         {relatedRooms.slice(0, 3).map((room, i) => (

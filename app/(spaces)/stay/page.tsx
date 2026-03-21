@@ -12,6 +12,7 @@ import { apartmentInfoConfig } from "../../../configs/stay/accordion";
 import { stayBookingConfig } from "../../../configs/stay/stay-booking";
 import { stayHeroConfig } from "../../../configs/stay/stay-hero";
 import { stayImageGridConfig } from "../../../configs/stay/stay-image-grid";
+import MapComponent from "../../../components/sections/stay/map";
 
 
 
@@ -30,6 +31,7 @@ export default function StayPage() {
       {/* <StaybodySection2 /> */}
       {/* <StayOptionsSection /> */}
       <SessionsAccordion {...apartmentInfoConfig} />
+      <MapComponent />
       <StayBookingCTA {...stayBookingConfig} />
     </div>
   );

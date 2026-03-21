@@ -162,7 +162,7 @@ export default function ImageGridAlt({
                 className={`absolute inset-0 flex items-center justify-center p-4 sm:p-6 transition-opacity duration-300 z-10 ${isActive ? "opacity-0" : "group-hover:opacity-0"
                   }`}
               >
-                <h2 className="text-h3-off text-h3-off-line-height font-offset lg:text-h2-off lg:text-h2-off-line-height text-white uppercase text-center whitespace-pre-line">
+                <h2 className="text-h3-off text-h3-off-line-height font-display lg:text-h2-off lg:text-h2-off-line-height text-white uppercase text-center whitespace-pre-line">
                   {item.label}
                 </h2>
               </div>

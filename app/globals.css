@@ -161,9 +161,9 @@
   --text-h2--tracking: -0.02em;
 
   /* h3: 16px → 24px */
-  --text-h3: clamp(1rem, 0.8rem + 1vw, 1.2rem);
+  --text-h3: clamp(1rem, 0.8rem + 1vw, 1.6rem);
   --text-h3--line-height: 1.4;
-  --text-h3--tracking: -0.03em;
+  --text-h3--tracking: 0.03em;
 
   /* =========================
    BODY TEXT
