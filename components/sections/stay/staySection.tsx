@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import gsap from "gsap";
 import Link from "next/link";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
 interface FloatingItem {
   icon: string;
   alt: string;
@@ -56,6 +58,10 @@ export default function StaySection({
   const [imagePos, setImagePos] = useState({ x: 0, y: 0 });
   const isTouchDevice = useRef(false);
   const hideTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const captionRef = useRef<HTMLParagraphElement>(null);
+  const headingRef = useRef<HTMLParagraphElement>(null);
+  const floatingRefs = useRef<(HTMLDivElement | null)[]>([]);
+
 
   const showImage = useCallback((word: string, el: HTMLElement) => {
     const img = boldImages[word];
@@ -202,6 +208,67 @@ export default function StaySection({
     });
   };
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      // Floating corner items drift in from their corners
+      floatingRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const positions = [
+          { x: -40, y: -40 }, // top-left
+          { x: 40, y: -40 },  // top-right
+          { x: -40, y: 40 },  // bottom-left
+          { x: 40, y: 40 },   // bottom-right
+        ];
+        gsap.fromTo(
+          el,
+          { opacity: 0, x: positions[i]?.x ?? 0, y: positions[i]?.y ?? 0 },
+          {
+            opacity: el.dataset.opacity ? parseFloat(el.dataset.opacity) : 1,
+            x: 0,
+            y: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            delay: i * 0.1,
+            scrollTrigger: { trigger: section, start: "top 40%", once: true },
+          }
+        );
+      });
+
+      // Caption fades up
+      gsap.fromTo(
+        captionRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: { trigger: section, start: "top 60%", once: true },
+          delay: 0.3,
+        }
+      );
+
+      // Heading lines stagger up
+      gsap.fromTo(
+        headingRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: { trigger: section, start: "top 60%", once: true },
+          delay: 0.5,
+        }
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
       ref={sectionRef}
@@ -211,7 +278,10 @@ export default function StaySection({
       {floatingItems.map((item, index) => (
         <div
           key={index}
+          ref={(el) => { floatingRefs.current[index] = el; }}
+          data-opacity={item.className?.includes("opacity-40") ? "0.4" : "0.6"}
           className={`absolute pointer-events-none ${positionClasses[item.position]} ${item.className ?? "w-24 opacity-50"}`}
+          style={{ opacity: 0 }} // hidden until GSAP animates in
         >
           <Image src={item.icon} alt={item.alt} width={200} height={200} className="w-full h-auto object-contain" />
         </div>
@@ -244,10 +314,12 @@ export default function StaySection({
       <div className="relative  flex flex-col items-center text-center px-6 sm:px-12 lg:px-24 py-20 mx-auto">
         {/* Caption */}
         <p
-          className="font-bold mb-4 sm:mb-6 uppercase tracking-[0.2em] text-[clamp(0.6rem,1vw,0.75rem)]"
+          ref={captionRef}
+          className="font-light mb-4 sm:mb-6 uppercase tracking-[0.2em] text-[clamp(0.6rem,1vw,0.75rem)]"
           style={{
             color: activeWord !== null ? "rgba(255,255,255,0.4" : "rgba(255,255,255,1)",
             transition: "color 0.5s ease",
+            opacity: 0, // hidden until GSAP animates in
           }}
         >
           {caption}
@@ -255,8 +327,9 @@ export default function StaySection({
 
         {/* Heading */}
         <p
+          ref={headingRef}
           className="font-extralight text-[clamp(1.8rem,4vw,4.5rem)] leading-tight"
-          style={{ fontFamily: "var(--font-body)" }}
+          style={{ fontFamily: "var(--font-body)", opacity: 0 }}
         >
           {renderHeading(heading)}
         </p>

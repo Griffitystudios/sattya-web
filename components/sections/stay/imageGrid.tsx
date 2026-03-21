@@ -1,10 +1,13 @@
-// components/ui/ImageGrid.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { colorKey } from "../../../configs/colors";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export interface ImageGridItem {
     image: string;
@@ -14,7 +17,6 @@ export interface ImageGridItem {
     rowSpan?: 1 | 2 | 3;
     colSpan?: 1 | 2 | 3;
     href?: string;
-
 }
 
 export interface ImageGridProps {
@@ -45,8 +47,8 @@ function HoverOverlay({
         >
             <svg
                 className={`absolute inset-3.75 w-[calc(100%-30px)] h-[calc(100%-30px)] pointer-events-none transition-all duration-700 ease-out transform ${active
-                    ? "scale-100 opacity-100"
-                    : "scale-105 opacity-0 group-hover:scale-100 group-hover:opacity-100"
+                        ? "scale-100 opacity-100"
+                        : "scale-105 opacity-0 group-hover:scale-100 group-hover:opacity-100"
                     }`}
                 preserveAspectRatio="none"
                 viewBox="0 0 100 100"
@@ -66,27 +68,19 @@ function HoverOverlay({
                     vectorEffect="non-scaling-stroke"
                 />
             </svg>
-
             <div
                 className={`px-8 z-30 relative flex flex-col items-center justify-center gap-6 w-full transition-all duration-700 delay-100 ease-out transform ${active
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
                     }`}
             >
                 <p className="caption text-white text-center font-light whitespace-pre-line leading-relaxed max-w-[85%]">
                     {hoverText}
                 </p>
-
-
             </div>
         </div>
     );
 }
-
-// ─── Breakpoint reference ────────────────────────────────────────────────────
-//   Mobile  ≤640px  → 1 col
-//   Desktop >640px  → cols prop
-// ────────────────────────────────────────────────────────────────────────────
 
 const desktopColsClass: Record<NonNullable<ImageGridProps["cols"]>, string> = {
     3: "min-[640px]:grid-cols-3",
@@ -115,19 +109,52 @@ export default function StayImageGrid({
     cols = 4,
 }: ImageGridProps) {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const sectionRef = useRef<HTMLElement>(null);
+    const gridRef = useRef<HTMLDivElement>(null);
 
+    useEffect(() => {
+        const section = sectionRef.current;
+        const grid = gridRef.current;
+        if (!section || !grid) return;
+
+        const cells = grid.querySelectorAll<HTMLElement>(".stay-grid-cell");
+
+        gsap.set(cells, { opacity: 0, y: 60, scale: 0.96 });
+
+        ScrollTrigger.create({
+            trigger: section,
+            start: "top 80%",
+            once: true,
+            onEnter: () => {
+                gsap.to(cells, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.7,
+                    ease: "power3.out",
+                    stagger: {
+                        each: 0.08,
+                        from: "start",
+                    },
+                });
+            },
+        });
+
+        return () => {
+            ScrollTrigger.getAll().forEach((t) => t.kill());
+        };
+    }, [items.length]);
 
     const handleTap = (index: number) => {
         setActiveIndex((prev) => (prev === index ? null : index));
     };
 
     return (
-        <section className={`w-full overflow-hidden ${className}`}>
+        <section ref={sectionRef} className={`w-full overflow-hidden ${className}`}>
             <div
+                ref={gridRef}
                 className={[
-                    // Mobile: 1 col, auto rows
                     "grid grid-cols-1 auto-rows-auto",
-                    // Desktop: cols prop + masonry with fixed total height
                     desktopColsClass[cols],
                     "min-[640px]:grid-rows-2 min-[640px]:auto-rows-[unset]",
                     "min-[640px]:h-[70vw] min-[1920px]:h-[44vw]",
@@ -140,11 +167,9 @@ export default function StayImageGrid({
                         <Wrapper
                             key={index}
                             className={[
-                                "group relative overflow-hidden cursor-pointer",
+                                "stay-grid-cell group relative overflow-hidden cursor-pointer",
                                 "h-full w-full",
-                                // Mobile: aspect ratio drives height
                                 "aspect-video",
-                                // Desktop: grid height controls sizing — reset aspect
                                 "min-[640px]:aspect-auto min-[640px]:h-full",
                                 rowSpanClass[item.rowSpan ?? 1],
                                 colSpanClass[item.colSpan ?? 1],

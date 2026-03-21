@@ -73,41 +73,41 @@ export default function SessionsAccordion({
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: "top 55%",
+        start: "top 65%",
         once: true,
       },
     });
 
-    tl.to(line1, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" })
+    tl.to(line1, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" })
       .to(
         line2,
-        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+        { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" },
         "-=0.45",
       )
       .to(
         heroLine2BgRef.current,
-        { scaleX: 1, duration: 0.5, ease: "power3.out" },
+        { scaleX: 1, duration: 0.3, ease: "power3.out" },
         "<", // starts at same time as line2
       )
       .to(
         line2,
-        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+        { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" },
         "-=0.45",
       )
 
       .to(
         sub ?? [],
-        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
+        { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" },
         "-=0.3",
       )
       .to(
         rows,
-        { opacity: 1, y: 0, duration: 0.55, ease: "power3.out", stagger: 0.3 },
+        { opacity: 1, y: 0, duration: 0.35, ease: "power3.out", stagger: 0.3 },
         "-=0.35",
       )
       .to(
         foot ?? [],
-        { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" },
+        { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" },
         "-=0.2",
       );
 
@@ -172,9 +172,8 @@ export default function SessionsAccordion({
               >
                 <button
                   onClick={() => hasContent && toggle(index)}
-                  className={`w-full flex items-center justify-between py-8 text-left ${
-                    hasContent ? "cursor-pointer" : "cursor-default"
-                  }`}
+                  className={`w-full flex items-center justify-between py-8 text-left ${hasContent ? "cursor-pointer" : "cursor-default"
+                    }`}
                   aria-expanded={isOpen}
                 >
                   <h2 className={`h2-off uppercase ${accentColor}`}>
@@ -188,9 +187,8 @@ export default function SessionsAccordion({
                 </button>
 
                 <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    isOpen ? "max-h-96 opacity-100 pb-6" : "max-h-0 opacity-0"
-                  }`}
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-96 opacity-100 pb-6" : "max-h-0 opacity-0"
+                    }`}
                 >
                   {item.content && (
                     <div className="flex flex-col gap-3 pr-8">

@@ -150,7 +150,7 @@ export default function KathmanduCollage({ className = "" }: KathmanduCollagePro
       className={`relative w-full aspect-square max-w-3xl mx-auto mt-15 lg:mt-0 ${className}`}
     >
       {/* STUPA */}
-      <div ref={stupaRef} className="absolute left-1/2 -translate-x-1/2 -top-15 w-[45%] opacity-0 pointer-events-auto z-20">
+      <div ref={stupaRef} className="absolute left-1/2 -translate-x-1/2 -top-15 w-[45%] opacity-0 pointer-events-auto ">
 
         <Image src="/images/spotted/stupa.png" alt="Boudhanath Stupa" width={500} height={600} className="w-full h-auto object-contain" />
       </div>

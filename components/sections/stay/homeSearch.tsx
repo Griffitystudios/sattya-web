@@ -28,7 +28,7 @@ export default function HomeSearch() {
         <div className="max-w-7xl mx-auto mt-30  ">
             {/* Heading */}
             <div className="w-fit mb-10 mx-auto">
-                <h2 className="text-h2 font-light text-stay uppercase leading-none">
+                <h2 className="text-h2 font-regular text-black uppercase leading-none">
                     Book your Accomodation at Sattya
                 </h2>
             </div>

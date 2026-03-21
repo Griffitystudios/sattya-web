@@ -68,7 +68,7 @@
 @font-face {
   font-family: "TomatoGrotesk";
   src: url("/fonts/TomatoGrotesk-SemiBold.otf") format("opentype");
-  font-weight: 700;
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
