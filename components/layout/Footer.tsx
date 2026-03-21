@@ -10,7 +10,7 @@ export interface FooterLink {
 export interface FooterProps {
   sattyaLogoSrc?: string;
   sattyaBrandName?: string;
-  spaceLogos?: { src: string; alt: string }[];
+  spaceLogos?: { src: string; alt: string; link: string }[];
   email?: string;
   phones?: string[];
   address?: string;
@@ -60,15 +60,16 @@ export default function Footer({
           {spaceLogos.length > 0 && (
             <div className="flex items-center justify-center gap-4 sm:gap-6 flex-wrap">
               {spaceLogos.map((logo, i) => (
-                <Image
-                  key={i}
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={120}
-                  quality={75}
-                  height={40}
-                  className="h-6 sm:h-7 lg:h-9 w-auto object-contain"
-                />
+                <Link href={logo.link} key={i}>
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={120}
+                    quality={75}
+                    height={40}
+                    className="h-6 sm:h-7 lg:h-9 w-auto object-contain"
+                  />
+                </Link>
               ))}
             </div>
           )}
