@@ -63,12 +63,13 @@ const MapComponent = () => {
                         href="https://maps.google.com/?q=27.675543,85.313090"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p text-black underline underline-offset-4 hover:text-stay transition-colors flex items-center gap-1 w-fit mt-1"
+                        className="p text-black underline underline-offset-8 hover:text-stay transition-colors flex items-center gap-1 w-fit mt-1"
                     >
-                        View on Google Maps
-                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                        View on Google Maps {" "}
+                        {/* <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
+                        </svg> */}
+                        ↗
                     </a>
                 </div>
 

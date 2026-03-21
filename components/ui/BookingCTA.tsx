@@ -59,27 +59,19 @@ export default function BookingCTA({
     });
 
     tl.to(
-      path1 ?? [],
-      { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut" },
+      [path1, path2].filter(Boolean),
+      { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut", stagger: 0 },
       0,
     )
-      .to(
-        path2 ?? [],
-        { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut" },
-        0,
-      )
       .to(h, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.55")
-      .to(
-        sub ?? [],
-        { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" },
-        "-=0.45",
-      )
+      .to(sub ?? [], { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" }, "-=0.45")
       .to(
         [cta, sec].filter(Boolean),
         { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.12 },
         "-=0.35",
       );
 
+    // CTA hover
     if (cta) {
       const inner = cta.querySelector<HTMLElement>(".cta-inner");
       const shadow = cta.querySelector<HTMLElement>(".cta-shadow");
@@ -99,9 +91,9 @@ export default function BookingCTA({
   }, []);
 
   return (
-    <section ref={sectionRef} className="z-100 py-16 px-6 lg:px-16">
+    <section ref={sectionRef} className="z-100 py-16 px-6 lg:px-16 ">
       {/* Animated top border */}
-      <div className="max-w-3xl mx-auto mb-12">
+      <div className="max-w-7xl mx-auto mb-12">
         <svg
           viewBox="0 0 800 12"
           xmlns="http://www.w3.org/2000/svg"
@@ -168,8 +160,9 @@ export default function BookingCTA({
           >
             {secondaryLabel} {"→"}
           </a>
-        )}
-      </div>
-    </section>
+        )
+        }
+      </div >
+    </section >
   );
 }

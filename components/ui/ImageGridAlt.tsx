@@ -1,9 +1,13 @@
-// components/ui/ImageGrid.tsx
+// components/ui/ImageGridAlt.tsx
 "use client";
 
-import { useState } from "react";
-import { colorKey, colors } from "../../configs/colors";
+import { useState, useRef, useEffect } from "react";
+import { colorKey } from "../../configs/colors";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export interface ImageGridItem {
   image: string;
@@ -21,33 +25,9 @@ export interface ImageGridProps {
   color?: colorKey;
 }
 
-function star(color: string) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="94"
-      height="88"
-      viewBox="0 0 94 88"
-      fill="none"
-    >
-      <path
-        d="M36.4496 10.0994L13.848 -33L63.6172 -3.78045L78.861 -26.8095L101.116 3.33123L149 11.8325L112.685 25.0176L128.63 60.2325L84.121 50.3417L70.8014 88L59.5874 52.2543L20.8509 70.295L36.6231 40.8022L0 21.5515L36.4496 10.0994Z"
-        fill={color}
-      />
-      <path
-        d="M39.4496 7.09942L16.848 -36L66.6172 -6.78045L81.861 -29.8095L104.116 0.33123L152 8.83245L115.685 22.0176L131.63 57.2325L87.121 47.3417L73.8014 85L62.5874 49.2543L23.8509 67.295L39.6231 37.8022L3 18.5515L39.4496 7.09942Z"
-        fill="black"
-      />
-    </svg>
-  );
-}
-
 function HoverOverlay({
   hoverText,
   hoverIcon,
-  bannerText,
-  logoSrc,
-  color,
   active,
   index,
 }: {
@@ -64,11 +44,10 @@ function HoverOverlay({
       className={`absolute inset-0 transition-opacity duration-500 z-20 flex items-center justify-center overflow-hidden bg-black/50 ${active ? "opacity-100" : "opacity-0 group-hover:opacity-100"
         }`}
     >
-      {/* Dynamic 4-sided SVG shapes */}
       <svg
         className={`absolute inset-3.75 w-[calc(100%-30px)] h-[calc(100%-30px)] pointer-events-none transition-all duration-700 ease-out transform ${active
-          ? "scale-100 opacity-100"
-          : "scale-105 opacity-0 group-hover:scale-100 group-hover:opacity-100"
+            ? "scale-100 opacity-100"
+            : "scale-105 opacity-0 group-hover:scale-100 group-hover:opacity-100"
           }`}
         preserveAspectRatio="none"
         viewBox="0 0 100 100"
@@ -76,10 +55,10 @@ function HoverOverlay({
         <polygon
           points={
             index % 3 === 0
-              ? "5,0 100,0 95,100 0,100" // Parallelogram
+              ? "5,0 100,0 95,100 0,100"
               : index % 3 === 1
-                ? "0,5 100,0 100,95 0,100" // Trapezoid
-                : "0,0 95,5 100,100 5,95" // Kite shape
+                ? "0,5 100,0 100,95 0,100"
+                : "0,0 95,5 100,100 5,95"
           }
           fill="none"
           stroke="white"
@@ -89,17 +68,15 @@ function HoverOverlay({
         />
       </svg>
 
-      {/* Center content */}
       <div
         className={`px-8 z-30 relative flex flex-col items-center justify-center gap-6 w-full transition-all duration-700 delay-100 ease-out transform ${active
-          ? "translate-y-0 opacity-100"
-          : "translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
+            ? "translate-y-0 opacity-100"
+            : "translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
           }`}
       >
         <p className="text-base sm:text-lg md:text-sm lg:text-xl text-white text-center font-light whitespace-pre-line leading-relaxed max-w-[85%]">
           {hoverText}
         </p>
-
         {hoverIcon && (
           <div className="w-10 h-10 lg:w-12 lg:h-12 relative opacity-90 animate-bounce transition-opacity duration-300">
             <Image
@@ -124,24 +101,65 @@ export default function ImageGridAlt({
   color,
 }: ImageGridProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const row = rowRef.current;
+    if (!section || !row) return;
+
+    const cells = row.querySelectorAll<HTMLElement>(".alt-grid-cell");
+
+    // Stagger from sides — even cells from left, odd from right
+    cells.forEach((cell, i) => {
+      gsap.set(cell, {
+        opacity: 0,
+        x: i % 2 === 0 ? -40 : 40,
+        scale: 0.96,
+      });
+    });
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        gsap.to(cells, {
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          duration: 0.75,
+          ease: "power3.out",
+          stagger: {
+            each: 0.1,
+            from: "start",
+          },
+        });
+      },
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, [items.length]);
 
   const handleTap = (index: number) => {
     setActiveIndex((prev) => (prev === index ? null : index));
   };
 
   return (
-    <section className={`w-full overflow-hidden ${className}`}>
-      <div className="flex flex-col md:flex-row">
+    <section ref={sectionRef} className={`w-full overflow-hidden ${className}`}>
+      <div ref={rowRef} className="flex flex-col md:flex-row">
         {items.map((item, index) => {
           const isActive = activeIndex === index;
 
           return (
             <div
               key={index}
-              className="group relative flex-1 min-h-40 sm:min-h-63 lg:min-h-80 overflow-hidden cursor-pointer"
+              className="alt-grid-cell group relative flex-1 min-h-40 sm:min-h-63 lg:min-h-80 overflow-hidden cursor-pointer"
               onClick={() => handleTap(index)}
             >
-              {/* Photo */}
               <Image
                 src={item.image}
                 alt={item.alt}
@@ -151,13 +169,11 @@ export default function ImageGridAlt({
                 sizes="(max-width: 640px) 100vw, 25vw"
               />
 
-              {/* Base dark overlay */}
               <div
                 className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${isActive ? "opacity-0" : "group-hover:opacity-0"
                   }`}
               />
 
-              {/* Default label */}
               <div
                 className={`absolute inset-0 flex items-center justify-center p-4 sm:p-6 transition-opacity duration-300 z-10 ${isActive ? "opacity-0" : "group-hover:opacity-0"
                   }`}
@@ -167,7 +183,6 @@ export default function ImageGridAlt({
                 </h2>
               </div>
 
-              {/* Hover / tap overlay */}
               <HoverOverlay
                 hoverText={item.hoverText || item.label}
                 hoverIcon={hoverIcon}

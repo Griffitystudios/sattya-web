@@ -1,6 +1,7 @@
 // app/stay/booking/page.tsx
-import Image from "next/image";
 import BookingWidget from "../../../../components/sections/stay/bookingWidget";
+import BookingCTA from "../../../../components/sections/stay/StayBookingCTA";
+import { stayBookingConfig } from "../../../../configs/stay/stay-booking";
 
 export default function BookingPage() {
     return (
@@ -48,6 +49,7 @@ export default function BookingPage() {
                     For group bookings or extended stays, contact us directly.
                 </p>
             </div>
+            <BookingCTA  {...stayBookingConfig} />
         </main>
     );
 }

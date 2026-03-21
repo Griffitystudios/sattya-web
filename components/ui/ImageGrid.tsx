@@ -1,9 +1,13 @@
 // components/ui/ImageGrid.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { colorKey } from "../../configs/colors";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export interface ImageGridItem {
   image: string;
@@ -12,6 +16,7 @@ export interface ImageGridItem {
   hoverText?: string;
   rowSpan?: 1 | 2 | 3;
   colSpan?: 1 | 2 | 3;
+  href?: string;
 }
 
 export interface ImageGridProps {
@@ -73,10 +78,9 @@ function HoverOverlay({
             : "translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
           }`}
       >
-        <p className="caption text-white text-center font-light whitespace-pre-line leading-relaxed max-w-[85%]">
+        <p className="p text-white text-center font-light whitespace-pre-line leading-relaxed max-w-[85%]">
           {hoverText}
         </p>
-
         {hoverIcon && (
           <div className="w-10 h-10 lg:w-12 lg:h-12 relative opacity-90 animate-bounce transition-opacity duration-300">
             <Image
@@ -92,27 +96,22 @@ function HoverOverlay({
   );
 }
 
-// ─── Breakpoint reference ────────────────────────────────────────────────────
-//   Mobile  ≤640px  → 1 col
-//   Desktop >640px  → cols prop
-// ────────────────────────────────────────────────────────────────────────────
-
 const desktopColsClass: Record<NonNullable<ImageGridProps["cols"]>, string> = {
-  3: "min-[640px]:grid-cols-3",
-  4: "min-[640px]:grid-cols-4",
-  5: "min-[640px]:grid-cols-5",
+  3: "min-[768px]:grid-cols-3",
+  4: "min-[768px]:grid-cols-4",
+  5: "min-[768px]:grid-cols-5",
 };
 
 const rowSpanClass: Record<NonNullable<ImageGridItem["rowSpan"]>, string> = {
-  1: "min-[640px]:row-span-1",
-  2: "min-[640px]:row-span-2",
-  3: "min-[640px]:row-span-3",
+  1: "min-[768px]:row-span-1",
+  2: "min-[768px]:row-span-2",
+  3: "min-[768px]:row-span-3",
 };
 
 const colSpanClass: Record<NonNullable<ImageGridItem["colSpan"]>, string> = {
-  1: "min-[640px]:col-span-1",
-  2: "min-[640px]:col-span-2",
-  3: "min-[640px]:col-span-3",
+  1: "min-[768px]:col-span-1",
+  2: "min-[768px]:col-span-2",
+  3: "min-[768px]:col-span-3",
 };
 
 export default function ImageGrid({
@@ -125,40 +124,75 @@ export default function ImageGrid({
   cols = 4,
 }: ImageGridProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const grid = gridRef.current;
+    if (!section || !grid) return;
+
+    const cells = grid.querySelectorAll<HTMLElement>(".grid-cell");
+
+    // Initial state — cells slide up from below, hidden
+    gsap.set(cells, { opacity: 0, y: 60, scale: 0.96 });
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        gsap.to(cells, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: {
+            each: 0.08,
+            from: "start",
+          },
+        });
+      },
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, [items.length]);
 
   const handleTap = (index: number) => {
     setActiveIndex((prev) => (prev === index ? null : index));
   };
 
   return (
-    <section className={`w-full overflow-hidden ${className}`}>
+    <section ref={sectionRef} className={`w-full overflow-hidden ${className}`}>
       <div
+        ref={gridRef}
         className={[
-          // Mobile: 1 col, auto rows
           "grid grid-cols-1 auto-rows-auto",
-          // Desktop: cols prop + masonry with fixed total height
           desktopColsClass[cols],
-          "min-[640px]:grid-rows-2 min-[640px]:auto-rows-[unset]",
-          "min-[640px]:h-[52vw] min-[1920px]:h-[44vw]",
+          "min-[768px]:grid-rows-none",
+          "min-[768px]:h-[50vw] min-h-[600px] min-[1920px]:h-[40vw]",
         ].join(" ")}
       >
         {items.map((item, index) => {
           const isActive = activeIndex === index;
+          const Wrapper = item.href ? "a" : "div";
 
           return (
-            <div
+            <Wrapper
               key={index}
+              {...(item.href ? { href: item.href } : {})}
               className={[
-                "group relative overflow-hidden cursor-pointer",
+                "grid-cell group relative overflow-hidden cursor-pointer",
                 "h-full w-full",
-                // Mobile: aspect ratio drives height
                 "aspect-video",
-                // Desktop: grid height controls sizing — reset aspect
-                "min-[640px]:aspect-auto min-[640px]:h-full",
+                "min-[768px]:aspect-auto min-[768px]:h-full",
                 rowSpanClass[item.rowSpan ?? 1],
                 colSpanClass[item.colSpan ?? 1],
               ].join(" ")}
-              onClick={() => handleTap(index)}
+              onClick={() => !item.href && handleTap(index)}
             >
               <Image
                 src={item.image}
@@ -167,7 +201,7 @@ export default function ImageGrid({
                 className={`object-cover transition-transform duration-500 ${isActive ? "scale-105" : "group-hover:scale-105"
                   }`}
                 sizes={[
-                  "(max-width: 640px) 100vw",
+                  "(max-width: 768px) 100vw",
                   `${Math.round(100 / cols)}vw`,
                 ].join(", ")}
               />
@@ -181,7 +215,7 @@ export default function ImageGrid({
                 className={`absolute inset-0 flex items-center justify-center p-4 sm:p-6 transition-opacity duration-300 z-10 ${isActive ? "opacity-0" : "group-hover:opacity-0"
                   }`}
               >
-                <h2 className="text-h3-off text-h3-off-line-height font-display lg:text-h2-off lg:text-h2-off-line-height text-white uppercase text-center whitespace-pre-line">
+                <h2 className="text-4xl sm:text-5xl md:text-2xl leading-none font-display lg:text-[clamp(2rem,2vw,5rem)] text-white uppercase text-center whitespace-pre-line">
                   {item.label}
                 </h2>
               </div>
@@ -195,7 +229,7 @@ export default function ImageGrid({
                 active={isActive}
                 index={index}
               />
-            </div>
+            </Wrapper>
           );
         })}
       </div>

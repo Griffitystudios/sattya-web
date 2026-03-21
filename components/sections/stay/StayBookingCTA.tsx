@@ -21,13 +21,13 @@ export interface BookingCTAProps {
     strokeColor?: string;
     secondaryCTAColor?: string;
 }
+
 export default function BookingCTA({
     heading = "BOOKING & INQUIRES",
     subheading,
     subtext,
     ctaLabel = "Contact @ Sattya",
     ctaHref = "#",
-    ctaIconSrc,
     secondaryCTALabel,
     secondaryCTAHref,
     secondaryLabel,
@@ -40,7 +40,9 @@ export default function BookingCTA({
     const borderPath2Ref = useRef<SVGPathElement>(null);
     const headingRef = useRef<HTMLHeadingElement>(null);
     const subheadingRef = useRef<HTMLParagraphElement>(null);
+    const subtextRef = useRef<HTMLParagraphElement>(null);
     const ctaRef = useRef<HTMLAnchorElement>(null);
+    const secondaryCTARef = useRef<HTMLAnchorElement>(null);
     const secondaryRef = useRef<HTMLAnchorElement>(null);
 
     useEffect(() => {
@@ -49,45 +51,49 @@ export default function BookingCTA({
         const path2 = borderPath2Ref.current;
         const h = headingRef.current;
         const sub = subheadingRef.current;
+        const subtxt = subtextRef.current;
         const cta = ctaRef.current;
+        const secCTA = secondaryCTARef.current;
         const sec = secondaryRef.current;
         if (!section || !h) return;
 
+        // Set up stroke dash for animated border
         [path1, path2].forEach((path) => {
             if (!path) return;
             const len = path.getTotalLength();
             gsap.set(path, { strokeDasharray: len, strokeDashoffset: len });
         });
 
-        const contentEls = [h, sub, cta, sec].filter(Boolean) as HTMLElement[];
+        // Initial hidden state for all content
+        const contentEls = [h, sub, subtxt, cta, secCTA, sec].filter(Boolean) as HTMLElement[];
         gsap.set(contentEls, { opacity: 0, y: 28 });
 
         const tl = gsap.timeline({
             scrollTrigger: { trigger: section, start: "top 80%", once: true },
         });
 
+        // Border draws in
         tl.to(
-            path1 ?? [],
-            { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut" },
+            [path1, path2].filter(Boolean),
+            { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut", stagger: 0 },
             0,
         )
-            .to(
-                path2 ?? [],
-                { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut" },
-                0,
-            )
+            // Heading
             .to(h, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.55")
+            // Subheading
+            .to(sub ?? [], { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" }, "-=0.4")
+            // Subtext
+            .to(subtxt ?? [], { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.35")
+            // Both CTAs stagger
             .to(
-                sub ?? [],
-                { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" },
-                "-=0.45",
+                [cta, secCTA].filter(Boolean),
+                { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.1 },
+                "-=0.3",
             )
-            .to(
-                [cta, sec].filter(Boolean),
-                { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.12 },
-                "-=0.35",
-            );
+            // Secondary link
+            .to(sec ?? [], { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.2");
 
+        // Primary CTA hover effect
         if (cta) {
             const inner = cta.querySelector<HTMLElement>(".cta-inner");
             const shadow = cta.querySelector<HTMLElement>(".cta-shadow");
@@ -108,8 +114,9 @@ export default function BookingCTA({
 
     return (
         <section ref={sectionRef} className="z-100 py-16 px-6 lg:px-16">
+
             {/* Animated top border */}
-            <div className="max-w-3xl mx-auto mb-12">
+            <div className="max-w-7xl mx-auto mb-12">
                 <svg
                     viewBox="0 0 800 12"
                     xmlns="http://www.w3.org/2000/svg"
@@ -138,8 +145,8 @@ export default function BookingCTA({
             </div>
 
             {/* Content */}
-
             <div className="max-w-2xl mx-auto flex flex-col items-center gap-6 text-center">
+
                 <h2 ref={headingRef} className="h2-off text-black uppercase">
                     {heading}
                 </h2>
@@ -151,11 +158,15 @@ export default function BookingCTA({
                 )}
 
                 {subtext && (
-                    <p className="p text-black max-w-2xl">{subtext}</p>
+                    <p ref={subtextRef} className="p text-black/70 max-w-2xl">
+                        {subtext}
+                    </p>
                 )}
 
                 {/* Two CTAs side by side */}
                 <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
+
+                    {/* Primary CTA */}
                     <a
                         ref={ctaRef}
                         href={ctaHref}
@@ -170,8 +181,10 @@ export default function BookingCTA({
                         </div>
                     </a>
 
+                    {/* Secondary CTA */}
                     {secondaryCTALabel && secondaryCTAHref && (
                         <a
+                            ref={secondaryCTARef}
                             href={secondaryCTAHref}
                             className="group relative inline-flex items-center justify-center"
                         >
@@ -192,16 +205,19 @@ export default function BookingCTA({
                     )}
                 </div>
 
-                {secondaryLabel && secondaryHref && (
-                    <a
-                        ref={secondaryRef}
-                        href={secondaryHref}
-                        className="caption text-black/60 underline underline-offset-4 hover:text-black transition-colors"
-                    >
-                        {secondaryLabel} {"→"}
-                    </a>
-                )}
-            </div>
-        </section>
+                {/* Secondary link */}
+                {
+                    secondaryLabel && secondaryHref && (
+                        <a
+                            ref={secondaryRef}
+                            href={secondaryHref}
+                            className="caption text-black/60 underline underline-offset-4 hover:text-black transition-colors"
+                        >
+                            {secondaryLabel} {"→"}
+                        </a >
+                    )
+                }
+            </div >
+        </section >
     );
 }
